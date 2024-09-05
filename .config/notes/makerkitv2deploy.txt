@@ -1,0 +1,8 @@
+Ensure you change build and install commands to pnpm
+Ensure you change root dir to /app/web
+To get the env variables run the turbo gen env in the top level dir
+Then copy all the env varibles to vercel
+Then add the following on top
+NEXT_PUBLIC_THEME_COLOR="#ffffff"
+NEXT_PUBLIC_THEME_COLOR_DARK="#0a0a0a"
+Then it should build and run properly
