@@ -247,13 +247,13 @@ map <leader>rs <Action>(ChangeSignature)
 map <leader>rr <Action>(Refactorings.QuickListPopupAction)
 
 " Go to code
-nmap <leader>gd <Action>(GotoDeclaration)
-nmap <leader>gy <Action>(GotoTypeDeclaration)
-nmap <leader>gi <Action>(GotoImplementation)
-nmap <leader>gu <Action>(ShowUsages)
-nmap <leader>gt <Action>(GotoTest)
-nmap <leader>gf <Action>(Back)
-nmap <leader>gb <Action>(Forward)
+map <leader>gd <Action>(GotoDeclaration)
+map <leader>gy <Action>(GotoTypeDeclaration)
+map <leader>gi <Action>(GotoImplementation)
+map <leader>gu <Action>(ShowUsages)
+map <leader>gt <Action>(GotoTest)
+map <leader>gf <Action>(Back)
+map <leader>gb <Action>(Forward)
 
 " Git windows
 map <leader>gc <Action>(CheckinProject)
@@ -269,34 +269,34 @@ map <leader>ca <Action>(ShowIntentionActions)
 map <leader>ch <action>(ShowHoverInfo)
 
 " Harpoon
-nmap <leader>hsn :action SetHarpoon1<cr>
-nmap <leader>hse :action SetHarpoon2<cr>
-nmap <leader>hsi :action SetHarpoon3<cr>
-nmap <leader>hso :action SetHarpoon4<cr>
+map <leader>hsn :action SetHarpoon1<cr>
+map <leader>hse :action SetHarpoon2<cr>
+map <leader>hsi :action SetHarpoon3<cr>
+map <leader>hso :action SetHarpoon4<cr>
 "nmap <leader>hs5 :action SetHarpoon5<cr>
 
-nmap <leader>hn :action GotoHarpoon1<cr>
-nmap <leader>he :action GotoHarpoon2<cr>
-nmap <leader>hi :action GotoHarpoon3<cr>
-nmap <leader>ho :action GotoHarpoon4<cr>
+map <leader>hn :action GotoHarpoon1<cr>
+map <leader>he :action GotoHarpoon2<cr>
+map <leader>hi :action GotoHarpoon3<cr>
+map <leader>ho :action GotoHarpoon4<cr>
 "nmap <leader>hg5 :action GotoHarpoon5<cr>
 
-nmap <leader>hh :action ShowHarpoon<cr>
-nmap <leader>ha :action AddToHarpoon<cr>
+map <leader>hh :action ShowHarpoon<cr>
+map <leader>ha :action AddToHarpoon<cr>
 
 " Vim
-nmap <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
-nmap <leader>vo :e ~/.ideavimrc<CR>
+map <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
+map <leader>vo :e ~/.ideavimrc<CR>
 
 " Tools
-nmap <leader>tt :!alacritty &<CR>
-nmap <leader>td :action ActivateDatabaseToolWindow<CR>
+map <leader>tt :!alacritty &<CR>
+map <leader>td :action ActivateDatabaseToolWindow<CR>
 "nmap <leader>th :action HideActiveWindows<CR>
-nmap <leader>th :action HideAllWindows<CR>
-nmap <leader>ts :action ShowSettings<CR>
-nmap <leader>te :action ActivateProblemsViewToolWindow<CR>
+map <leader>th :action HideAllWindows<CR>
+map <leader>ts :action ShowSettings<CR>
+map <leader>te :action ActivateProblemsViewToolWindow<CR>
 
 " Bugs
-nmap <leader>bb :action ToggleLineBreakpoint<CR>
-nmap <leader>br :action Debugger.RemoveAllBreakpoints<CR>
-nmap <leader>bf :action Debugger.RemoveAllBreakpointsInFile<CR>
+map <leader>bb :action ToggleLineBreakpoint<CR>
+map <leader>br :action Debugger.RemoveAllBreakpoints<CR>
+map <leader>bf :action Debugger.RemoveAllBreakpointsInFile<CR>
