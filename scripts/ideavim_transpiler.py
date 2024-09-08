@@ -62,5 +62,5 @@ def transpile_ideavimrc(input_file, output_file):
 # Example usage
 if __name__ == "__main__":
     input_file_path = "../custom.ideavimrc"
-    output_file_path = "../tranpiled.ideavimrc"
+    output_file_path = "../transpiled.ideavimrc"
     transpile_ideavimrc(input_file_path, output_file_path)

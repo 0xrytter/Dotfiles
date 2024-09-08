@@ -1,0 +1,196 @@
+"" Base Settings
+"" ========================================================
+sethandler <c-h> a:vim
+sethandler <c-l> a:vim
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nmap <C-u> <C-u>zz
+nmap <C-d> <C-d>zz
+nnoremap <A-n> :tabnext<CR>
+nnoremap <A-p> :tabprev<CR>
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+nnoremap [[ <Action>(MethodUp)
+nnoremap ]] <Action>(MethodDown)
+vnoremap < <gv
+vnoremap > >gv
+nnoremap qj @q
+inoremap <C-j> <Action>(PopupMenu-selectNext)
+inoremap <C-k> <Action>(PopupMenu-selectPrev)
+
+"" Other Settings
+"" ========================================================
+set scrolloff=10
+set relativelinenumber
+set showmode
+set showcmd
+set smartcase
+set incsearch
+set hlsearch
+set commentary
+set visualbell
+set clipboard=unnamedplus 
+let mapleader = " "
+set surround
+set highlightedyank
+set sneak
+set nerdtree
+set quickscope
+set easymotion
+set notimeout
+set relativenumber
+set number
+let mapleader = " "
+set which-key
+let g:WhichKey_FontSize = 16
+let g:WhichKey_CommandColor = "#89b4fa"
+let g:WhichKey_PrefixColor = "#a6e3a1"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+autocmd FileType nerdtree map <buffer> r <Action>(RenameElement)
+ma <leader>zo :action ExandAllRegions<CR>
+
+"" Which-key Descriptions
+"" ========================================================
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
+let g:WhichKeyDesc_fold = "<leader>z Folding"
+let g:WhichKeyDesc_window = "<leader>w Window splits"
+let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
+let g:WhichKeyDesc_display = "<leader>d Display options"
+let g:WhichKeyDesc_action= "<leader>a Actions"
+let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
+let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
+let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
+let g:WhichKeyDesc_goto = "<leader>g Go to X"
+let g:WhichKeyDesc_git = "<leader>g Git operations"
+let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
+let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
+let g:WhichKeyDesc_errors = "<leader>e Error navigation"
+let g:WhichKeyDesc_code_generation = "<leader>c Code Generation"
+let g:WhichKeyDesc_harpoon = "<leader>h Harpoon"
+let g:WhichKeyDesc_goto_harpoon = "<leader>hg Goto harpoon" 
+let g:WhichKeyDesc_set_harpoon = "<leader>hs Set harpoon" 
+let g:WhichKeyDesc_tools= "<leader>t Tools"
+let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
+let g:WhichKeyDesc_leader = "<leader>tf Open file explorer"
+let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
+let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
+let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
+let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
+let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
+let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
+let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
+let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
+let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
+let g:WhichKeyDesc_comment = "<leader>ac Comment line"
+let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
+let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
+let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
+let g:WhichKeyDesc_file_nav_goto_content = "<leader>fc Search for file content"
+let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
+let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
+let g:WhichKeyDesc_refactoring_rename = "<leader>rn Rename element"
+let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
+let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
+
+"" Key Bindings
+"" ========================================================
+map <leader>j <Plug>(easymotion-s)
+map <leader>tf :NERDTreeToggle<CR>
+map <leader>zc :action CollapseAllRegions<CR>
+map <leader>zo :action ExandAllRegions<CR>
+map <leader>wv <Action>(SplitVertically)
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+map <leader>dd <action>(ToggleDistractionFreeMode)
+map <leader>dz <action>(ToggleZenMode)
+map <leader>df <action>(ToggleFullScreen)
+map <leader>am <action>(ShowIntentionActions)
+map <leader>ac <action>(CommentByLineComment)
+map <leader>ar <action>(Run)
+map <leader>ad <action>(Debug)
+map <leader>as <action>(Stop)
+map <leader>at <action>(RunAllTest)
+map <leader>ao <action>(RiderOpenSolution)
+map <leader>an <action>(RiderNuGetToggleToolWindowAction)
+map <leader>aq <action>(Console.Jdbc.Execute)
+map <leader>ff <action>(GotoFile)
+map <leader>fr <action>(RecentFiles)
+map <leader>fc <action>(FindInPath)
+map <leader><leader> <Action>(RecentFiles)
+map <leader>fl <action>(RecentLocations)
+map <leader>fs <action>(NewScratchFile)
+map <leader>fe <action>(SearchEverywhere)
+map <leader>q <action>(CloseContent)
+map <leader>rn <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+map <leader>dd <action>(ToggleDistractionFreeMode)
+map <leader>dz <action>(ToggleZenMode)
+map <leader>df <action>(ToggleFullScreen)
+map <leader>am <action>(ShowIntentionActions)
+map <leader>ac <action>(CommentByLineComment)
+map <leader>ar <action>(Run)
+map <leader>ad <action>(Debug)
+map <leader>as <action>(Stop)
+map <leader>at <action>(RunAllTest)
+map <leader>ao <action>(RiderOpenSolution)
+map <leader>an <action>(RiderNuGetToggleToolWindowAction)
+map <leader>aq <action>(Console.Jdbc.Execute)
+map <leader>ff <action>(GotoFile)
+map <leader>fr <action>(RecentFiles)
+map <leader>fc <action>(FindInPath)
+map <leader><leader> <Action>(RecentFiles)
+map <leader>fl <action>(RecentLocations)
+map <leader>fs <action>(NewScratchFile)
+map <leader>fe <action>(SearchEverywhere)
+map <leader>q <action>(CloseContent)
+map <leader>rn <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rf <Action>(IntroduceField)
+map <leader>rs <Action>(ChangeSignature)
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+map <leader>gd <Action>(GotoDeclaration)
+map <leader>gy <Action>(GotoTypeDeclaration)
+map <leader>gi <Action>(GotoImplementation)
+map <leader>gu <Action>(ShowUsages)
+map <leader>gt <Action>(GotoTest)
+map <leader>gf <Action>(Back)
+map <leader>gb <Action>(Forward)
+map <leader>gc <Action>(CheckinProject)
+map <leader>gs <Action>(ActivateVersionControlToolWindow)
+map <leader>gb <Action>(Git.Branches)
+map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
+map <leader>ep <Action>(ReSharperGotoPrevErrorInSolution)
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>ch <action>(ShowHoverInfo)
+map <leader>hsn :action SetHarpoon1<cr>
+map <leader>hse :action SetHarpoon2<cr>
+map <leader>hsi :action SetHarpoon3<cr>
+map <leader>hso :action SetHarpoon4<cr>
+map <leader>hn :action GotoHarpoon1<cr>
+map <leader>he :action GotoHarpoon2<cr>
+map <leader>hi :action GotoHarpoon3<cr>
+map <leader>ho :action GotoHarpoon4<cr>
+map <leader>hh :action ShowHarpoon<cr>
+map <leader>ha :action AddToHarpoon<cr>
+map <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
+map <leader>vo :e ~/.ideavimrc<CR>
+map <leader>tt :!alacritty &<CR>
+map <leader>td :action ActivateDatabaseToolWindow<CR>
+map <leader>th :action HideAllWindows<CR>
+map <leader>ts :action ShowSettings<CR>
+map <leader>te :action ActivateProblemsViewToolWindow<CR>
+map <leader>bb :action ToggleLineBreakpoint<CR>
+map <leader>br :action Debugger.RemoveAllBreakpoints<CR>
+map <leader>bf :action Debugger.RemoveAllBreakpointsInFile<CR>
