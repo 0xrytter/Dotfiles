@@ -1,0 +1,11 @@
+Scratch
+org.jetbrains.action-tracker
+com.github.catppuccin.jetbrains
+AceJump
+IdeaVIM
+org.jetbrains.IdeaVim-EasyMotion
+com.joshestein.ideavim-quickscope
+ca.alexgirard.HarpoonIJ
+eu.theblob42.idea.whichkey
+youngstead.relative-line-numbers
+io.github.mishkun.ideavimsneak
