@@ -15,7 +15,7 @@ def get_ide_command(ide_name, username):
         ide_commands = {
             "idea": f"C:\\Users\\{username}\\.IdeaIC2024\\bin\\idea.exe installPlugins",
             "pycharm": f"C:\\Users\\{username}\\AppData\\Local\\JetBrains\\PyCharm2024\\bin\\pycharm.exe installPlugins",
-            "webstorm": f"C:\\Users\\{username}\\AppData\\Local\\JetBrains\\WebStorm2024\\bin\\webstorm.exe installPlugins",
+            "webstorm": f"C:\Program Files\JetBrains\WebStorm 2024.2.1\bin\webstorm64.exe installPlugins",
             "clion": f"C:\\Users\\{username}\\AppData\\Local\\JetBrains\\CLion2024\\bin\\clion.exe installPlugins",
             "phpstorm": f"C:\\Users\\{username}\\AppData\\Local\\JetBrains\\PhpStorm2024\\bin\\phpstorm.exe installPlugins",
             "rider": f"C:\\Users\\{username}\\AppData\\Local\\JetBrains\\Rider2024\\bin\\rider.exe installPlugins",

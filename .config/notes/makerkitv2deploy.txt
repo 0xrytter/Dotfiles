@@ -6,3 +6,4 @@ Then add the following on top
 NEXT_PUBLIC_THEME_COLOR="#ffffff"
 NEXT_PUBLIC_THEME_COLOR_DARK="#0a0a0a"
 Then it should build and run properly
+Husk at opdatere robots.ts
