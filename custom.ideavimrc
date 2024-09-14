@@ -234,6 +234,12 @@ let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
 map gb <Action>(Back)
 map gf <Action>(Forward)
 
+" Harpoon go to
+map gn :action GotoHarpoon1
+map ge :action GotoHarpoon2
+map gi :action GotoHarpoon3
+map go :action GotoHarpoon4
+
 " Git windows
 let g:WhichKeyDesc_git = "<leader>g Git operations"
 
@@ -258,18 +264,13 @@ map <leader>ch <action>(ShowHoverInfo)
 let g:WhichKeyDesc_harpoon = "<leader>h Harpoon"
 
 let g:WhichKeyDesc_set_harpoon = "<leader>hs Set harpoon" 
-map <leader>hsn :action SetHarpoon1<cr>
-map <leader>hse :action SetHarpoon2<cr>
-map <leader>hsi :action SetHarpoon3<cr>
-map <leader>hso :action SetHarpoon4<cr>
-"nmap <leader>hs5 :action SetHarpoon5<cr>
 
 let g:WhichKeyDesc_goto_harpoon = "<leader>hg Goto harpoon" 
-map <leader>hn :action GotoHarpoon1<cr>
-map <leader>he :action GotoHarpoon2<cr>
-map <leader>hi :action GotoHarpoon3<cr>
-map <leader>ho :action GotoHarpoon4<cr>
-"nmap <leader>hg5 :action GotoHarpoon5<cr>
+map <leader>hn :action SetHarpoon1<cr>
+map <leader>he :action SetHarpoon2<cr>
+map <leader>hi :action SetHarpoon3<cr>
+map <leader>ho :action SetHarpoon4<cr>
+"nmap <leader>hg5 :action SetHarpoon5<cr>
 
 map <leader>hh :action ShowHarpoon<cr>
 map <leader>ha :action AddToHarpoon<cr>
@@ -288,7 +289,6 @@ map <leader>td :action ActivateDatabaseToolWindow<CR>
 map <leader>th :action HideAllWindows<CR>
 map <leader>ts :action ShowSettings<CR>
 map <leader>te :action ActivateProblemsViewToolWindow<CR>
-
 
 " Bugs
 map <leader>bb :action ToggleLineBreakpoint<CR>
