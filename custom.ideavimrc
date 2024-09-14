@@ -103,8 +103,8 @@ let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
 map <leader>j <Plug>(easymotion-s)
 
 " Open NERDTree (use q to exit)
-let g:WhichKeyDesc_leader = "<leader>tf Open file explorer"
-map <leader>tf :NERDTreeToggle<CR>
+" let g:WhichKeyDesc_leader = "<leader>tf Open file explorer"
+" map <leader>tf :NERDTreeToggle<CR>
 
 autocmd FileType nerdtree map <buffer> r <Action>(RenameElement)
 
@@ -185,7 +185,6 @@ map <leader>rn <Action>(RenameElement)
 let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
 map <leader>rm <Action>(ExtractMethod)
 ma <leader>zo :action ExandAllRegions<CR>
-
 
 " Display options
 map <leader>dd <action>(ToggleDistractionFreeMode)
@@ -283,11 +282,13 @@ map <leader>vo :e ~/.ideavimrc<CR>
 let g:WhichKeyDesc_tools= "<leader>t Tools"
 
 map <leader>tt :!alacritty &<CR>
+map <leader>tf :action ActivateProjectToolWindow<CR>
 map <leader>td :action ActivateDatabaseToolWindow<CR>
 "nmap <leader>th :action HideActiveWindows<CR>
 map <leader>th :action HideAllWindows<CR>
 map <leader>ts :action ShowSettings<CR>
 map <leader>te :action ActivateProblemsViewToolWindow<CR>
+
 
 " Bugs
 map <leader>bb :action ToggleLineBreakpoint<CR>
