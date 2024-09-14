@@ -1,5 +1,13 @@
 "" Base Settings
 "" ========================================================
+sethandler <C-i> n-v-i:vim
+sethandler <C-o> n-v-i:vim
+sethandler <C-d> n-v-i:vim
+sethandler <C-u> n-v-i:vim
+sethandler <C-h> n-v-i:vim
+sethandler <C-j> n-v-i:vim
+sethandler <C-k> n-v-i:vim
+sethandler <C-l> n-v-i:vim
 sethandler <c-h> a:vim
 sethandler <c-l> a:vim
 sethandler <c-j> a:vim
@@ -27,25 +35,27 @@ inoremap <C-k> <Action>(PopupMenu-selectPrev)
 "" Other Settings
 "" ========================================================
 set scrolloff=10
-set relativelinenumber
+set relativenumber
+set number
 set showmode
 set showcmd
 set smartcase
 set incsearch
 set hlsearch
-set commentary
 set visualbell
 set clipboard=unnamedplus 
-let mapleader = " "
+set commentary "
 set surround
 set highlightedyank
 set sneak
 set nerdtree
+set argtextobj
+set multicursor
+set ideajoin
+set ideamarks
 set quickscope
 set easymotion
 set notimeout
-set relativenumber
-set number
 let mapleader = " "
 set which-key
 let g:WhichKey_FontSize = 16
@@ -165,6 +175,10 @@ map gu <Action>(ShowUsages)
 map gt <Action>(GotoTest)
 map gb <Action>(Back)
 map gf <Action>(Forward)
+map gn :action GotoHarpoon1
+map ge :action GotoHarpoon2
+map gi :action GotoHarpoon3
+map go :action GotoHarpoon4
 map <leader>gc <Action>(CheckinProject)
 map <leader>gs <Action>(ActivateVersionControlToolWindow)
 map <leader>gb <Action>(Git.Branches)
@@ -172,14 +186,10 @@ map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
 map <leader>ep <Action>(ReSharperGotoPrevErrorInSolution)
 map <leader>ca <Action>(ShowIntentionActions)
 map <leader>ch <action>(ShowHoverInfo)
-map <leader>hsn :action SetHarpoon1<cr>
-map <leader>hse :action SetHarpoon2<cr>
-map <leader>hsi :action SetHarpoon3<cr>
-map <leader>hso :action SetHarpoon4<cr>
-map <leader>hn :action GotoHarpoon1<cr>
-map <leader>he :action GotoHarpoon2<cr>
-map <leader>hi :action GotoHarpoon3<cr>
-map <leader>ho :action GotoHarpoon4<cr>
+map <leader>hn :action SetHarpoon1<cr>
+map <leader>he :action SetHarpoon2<cr>
+map <leader>hi :action SetHarpoon3<cr>
+map <leader>ho :action SetHarpoon4<cr>
 map <leader>hh :action ShowHarpoon<cr>
 map <leader>ha :action AddToHarpoon<cr>
 map <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>

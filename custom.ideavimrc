@@ -4,22 +4,26 @@
 "" ========================================================
 
 set scrolloff=10
-set relativelinenumber
+set relativenumber
+set number
 set showmode
 set showcmd
-
 set smartcase
 set incsearch
 set hlsearch
-
-set commentary
-
 set visualbell
-
-" Use system clipboard
 set clipboard=unnamedplus 
+set commentary "
 
-let mapleader = " "
+"" Choosing handlers in conflicting Intellij/IdeaVim keymaps =======
+sethandler <C-i> n-v-i:vim
+sethandler <C-o> n-v-i:vim
+sethandler <C-d> n-v-i:vim
+sethandler <C-u> n-v-i:vim
+sethandler <C-h> n-v-i:vim
+sethandler <C-j> n-v-i:vim
+sethandler <C-k> n-v-i:vim
+sethandler <C-l> n-v-i:vim
 
 "" Plugin Settings
 "" ========================================================
@@ -28,15 +32,15 @@ set surround
 set highlightedyank
 set sneak
 set nerdtree
+set argtextobj
+set multicursor
+set ideajoin
+set ideamarks
 set quickscope
 
 " Easymotion settings
 set easymotion
 set notimeout
-
-" Relative line numbers
-set relativenumber
-set number
 
 " Buffer navigation
 sethandler <c-h> a:vim
@@ -66,7 +70,6 @@ let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
 
 " Override Ctrl + u to scroll up and center the screen
 nmap <C-u> <C-u>zz
-
 " Override Ctrl + d to scroll down and center the screen
 nmap <C-d> <C-d>zz
 
