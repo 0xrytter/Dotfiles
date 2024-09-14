@@ -61,30 +61,6 @@ let g:WhichKeyDesc_leader = "<leader> Leader key"
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
 
-
-let g:WhichKeyDesc_window = "<leader>w Window splits"
-
-let g:WhichKeyDesc_display = "<leader>d Display options"
-
-let g:WhichKeyDesc_action= "<leader>a Actions"
-let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
-let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
-
-let g:WhichKeyDesc_goto = "<leader>g Go to X"
-
-let g:WhichKeyDesc_git = "<leader>g Git operations"
-let g:WhichKeyDesc_errors = "<leader>e Error navigation"
-
-let g:WhichKeyDesc_code_generation = "<leader>c Code Generation"
-
-let g:WhichKeyDesc_harpoon = "<leader>h Harpoon"
-
-let g:WhichKeyDesc_tools= "<leader>t Tools"
-
-
-
-
-
 "" Key mappings
 "" ========================================================
 
@@ -141,6 +117,12 @@ let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
 map <leader>zo :action ExandAllRegions<CR>
 
 " Window splits
+let g:WhichKeyDesc_window = "<leader>w Window splits"
+
+let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
 map <leader>wv <Action>(SplitVertically)
 let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
@@ -151,6 +133,8 @@ let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposit
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 
 " Display options
+let g:WhichKeyDesc_display = "<leader>d Display options"
+
 let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
 map <leader>dd <action>(ToggleDistractionFreeMode)
 let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
@@ -159,6 +143,8 @@ let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
 map <leader>df <action>(ToggleFullScreen)
 
 "  Actions
+let g:WhichKeyDesc_action= "<leader>a Actions"
+
 let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
 map <leader>am <action>(ShowIntentionActions)
 let g:WhichKeyDesc_comment = "<leader>ac Comment line"
@@ -173,6 +159,8 @@ map <leader>an <action>(RiderNuGetToggleToolWindowAction)
 map <leader>aq <action>(Console.Jdbc.Execute)
 
 " Find
+let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
+
 let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
 map <leader>ff <action>(GotoFile)
 let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
@@ -190,17 +178,14 @@ let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
 map <leader>q <action>(CloseContent)
 
 " Refactoring
+let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
+
 let g:WhichKeyDesc_refactoring_rename = "<leader>rn Rename element"
 map <leader>rn <Action>(RenameElement)
 let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
 map <leader>rm <Action>(ExtractMethod)
 ma <leader>zo :action ExandAllRegions<CR>
 
-" Window splits
-let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
-map <leader>ws <Action>(SplitHorizontally)
-map <leader>wu <Action>(Unsplit)
-map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 
 " Display options
 map <leader>dd <action>(ToggleDistractionFreeMode)
@@ -239,6 +224,8 @@ map <leader>rs <Action>(ChangeSignature)
 map <leader>rr <Action>(Refactorings.QuickListPopupAction)
 
 " Go to code
+let g:WhichKeyDesc_goto = "g Go to X"
+
 map gd <Action>(GotoDeclaration)
 map gy <Action>(GotoTypeDeclaration)
 map gi <Action>(GotoImplementation)
@@ -249,20 +236,27 @@ map gb <Action>(Back)
 map gf <Action>(Forward)
 
 " Git windows
+let g:WhichKeyDesc_git = "<leader>g Git operations"
+
 map <leader>gc <Action>(CheckinProject)
 map <leader>gs <Action>(ActivateVersionControlToolWindow)
 let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
 map <leader>gb <Action>(Git.Branches)
 
 " Errors
+let g:WhichKeyDesc_errors = "<leader>e Error navigation"
+
 map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
 map <leader>ep <Action>(ReSharperGotoPrevErrorInSolution)
 
 " Context
+let g:WhichKeyDesc_code_generation = "<leader>context" 
+
 map <leader>ca <Action>(ShowIntentionActions)
 map <leader>ch <action>(ShowHoverInfo)
 
 " Harpoon
+let g:WhichKeyDesc_harpoon = "<leader>h Harpoon"
 
 let g:WhichKeyDesc_set_harpoon = "<leader>hs Set harpoon" 
 map <leader>hsn :action SetHarpoon1<cr>
@@ -286,6 +280,8 @@ map <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
 map <leader>vo :e ~/.ideavimrc<CR>
 
 " Tools
+let g:WhichKeyDesc_tools= "<leader>t Tools"
+
 map <leader>tt :!alacritty &<CR>
 map <leader>td :action ActivateDatabaseToolWindow<CR>
 "nmap <leader>th :action HideActiveWindows<CR>
