@@ -57,44 +57,33 @@ let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#89b4fa"
 let g:WhichKey_PrefixColor = "#a6e3a1"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
-
 let g:WhichKeyDesc_leader = "<leader> Leader key"
-
-
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
+let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
 
-
-let g:WhichKeyDesc_fold = "<leader>z Folding"
 
 let g:WhichKeyDesc_window = "<leader>w Window splits"
-let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
 
 let g:WhichKeyDesc_display = "<leader>d Display options"
 
 let g:WhichKeyDesc_action= "<leader>a Actions"
-
-let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
-
 let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
-
-
 let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
 
 let g:WhichKeyDesc_goto = "<leader>g Go to X"
 
 let g:WhichKeyDesc_git = "<leader>g Git operations"
-let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
-let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
-
 let g:WhichKeyDesc_errors = "<leader>e Error navigation"
 
 let g:WhichKeyDesc_code_generation = "<leader>c Code Generation"
 
 let g:WhichKeyDesc_harpoon = "<leader>h Harpoon"
-let g:WhichKeyDesc_goto_harpoon = "<leader>hg Goto harpoon" 
-let g:WhichKeyDesc_set_harpoon = "<leader>hs Set harpoon" 
 
 let g:WhichKeyDesc_tools= "<leader>t Tools"
+
+
+
+
 
 "" Key mappings
 "" ========================================================
@@ -144,6 +133,8 @@ map <leader>tf :NERDTreeToggle<CR>
 autocmd FileType nerdtree map <buffer> r <Action>(RenameElement)
 
 " Folding
+let g:WhichKeyDesc_fold = "<leader>z Folding"
+
 let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
 map <leader>zc :action CollapseAllRegions<CR>
 let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
@@ -152,6 +143,7 @@ map <leader>zo :action ExandAllRegions<CR>
 " Window splits
 let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
 map <leader>wv <Action>(SplitVertically)
+let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
 map <leader>ws <Action>(SplitHorizontally)
 let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
 map <leader>wu <Action>(Unsplit)
@@ -247,17 +239,19 @@ map <leader>rs <Action>(ChangeSignature)
 map <leader>rr <Action>(Refactorings.QuickListPopupAction)
 
 " Go to code
-map <leader>gd <Action>(GotoDeclaration)
-map <leader>gy <Action>(GotoTypeDeclaration)
-map <leader>gi <Action>(GotoImplementation)
-map <leader>gu <Action>(ShowUsages)
-map <leader>gt <Action>(GotoTest)
-map <leader>gf <Action>(Back)
-map <leader>gb <Action>(Forward)
+map gd <Action>(GotoDeclaration)
+map gy <Action>(GotoTypeDeclaration)
+map gi <Action>(GotoImplementation)
+map gu <Action>(ShowUsages)
+map gt <Action>(GotoTest)
+let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
+map gb <Action>(Back)
+map gf <Action>(Forward)
 
 " Git windows
 map <leader>gc <Action>(CheckinProject)
 map <leader>gs <Action>(ActivateVersionControlToolWindow)
+let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
 map <leader>gb <Action>(Git.Branches)
 
 " Errors
@@ -269,12 +263,15 @@ map <leader>ca <Action>(ShowIntentionActions)
 map <leader>ch <action>(ShowHoverInfo)
 
 " Harpoon
+
+let g:WhichKeyDesc_set_harpoon = "<leader>hs Set harpoon" 
 map <leader>hsn :action SetHarpoon1<cr>
 map <leader>hse :action SetHarpoon2<cr>
 map <leader>hsi :action SetHarpoon3<cr>
 map <leader>hso :action SetHarpoon4<cr>
 "nmap <leader>hs5 :action SetHarpoon5<cr>
 
+let g:WhichKeyDesc_goto_harpoon = "<leader>hg Goto harpoon" 
 map <leader>hn :action GotoHarpoon1<cr>
 map <leader>he :action GotoHarpoon2<cr>
 map <leader>hi :action GotoHarpoon3<cr>
