@@ -1,0 +1,219 @@
+(deflocalkeys-win
+  æ 192
+  ø 222
+  å 221
+  ¨ 186
+  ´ 219
+  ' 191
+
+  RTick 219
+  LP 56
+  RP 57
+  Str 50
+  ? 187
+  ^ 186
+  ¤ 52 
+  % 53
+  & 54
+  * 191
+  ! 49
+  # 51
+  > 226
+  = 48
+  / 55
+
+  { 55
+  } 48
+  [ 56
+  ] 57
+  ~ 186
+  | 219
+  € 5
+  $ 52
+  £ 51
+  @ 50
+  \ 226
+)
+
+(deflocalkeys-linux
+  æ 39
+  ø 40
+  å 26
+  ¨ 27
+  ´ 13
+  ' 43
+
+  RTick 13
+  LP 9
+  RP 10
+  Str 3
+  ? 12
+  ^ 27
+  ¤ 5
+  % 6
+  & 7
+  * 43
+  ! 2
+  # 4
+  > 86
+  = 11
+  / 8
+
+  { 8
+  } 11
+  [ 9
+  ] 10
+  ~ 27
+  | 13
+  € 6
+  $ 5
+  £ 4
+  @ 3
+  \ 86
+
+  - 53
+)
+
+(defalias
+  LP (multi lshft LP)
+  RP (multi lshft RP)
+  Str (multi lshft Str)
+  ? (multi lshft ?)
+  ^ (multi lshft ^)
+  ¤ (multi lshft ¤)
+  % (multi lshft %)
+  & (multi lshft &)
+  * (multi lshft *)
+  ! (multi lshft !)
+  # (multi lshft #)
+  > (multi lshft >)
+  = (multi lshft =)
+  / (multi lshft /)
+  
+
+  { (multi ralt {)
+  } (multi ralt })
+  [ (multi ralt [)
+  ] (multi ralt ])
+  ~ (multi ralt ~)
+  | (multi ralt |)
+  € (multi ralt €)
+  $ (multi ralt $)
+  £ (multi ralt £)
+  @ (multi ralt @)
+  \ (multi ralt \)
+
+  ../ (macro . . S-(/))
+  div (macro < d i v S-(<))
+  /div (macro < S-(/) d i v S-(<))
+)
+
+(defvar
+  tap-time 300
+  hold-time 250
+)
+
+(defalias nav (layer-while-held navigation))
+(defalias sym (layer-while-held symbol))
+(defalias fun (layer-while-held function))
+(defalias num (layer-while-held numpad))
+(defalias mou (layer-while-held mouse))
+(defalias med (layer-while-held media))
+
+(defalias
+  a (tap-hold $tap-time $hold-time a lmet)
+  r (tap-hold $tap-time $hold-time r lalt)
+  s (tap-hold $tap-time $hold-time s lctl)
+  t (tap-hold $tap-time $hold-time t lsft)
+  n (tap-hold $tap-time $hold-time n rsft)
+  e (tap-hold $tap-time $hold-time e rctl)
+  i (tap-hold $tap-time $hold-time i lalt)
+  o (tap-hold $tap-time $hold-time o rmet)
+)
+
+(defalias
+  1 (tap-hold $tap-time $hold-time 1 lmet)
+  2 (tap-hold $tap-time $hold-time 2 lalt)
+  3 (tap-hold $tap-time $hold-time 3 lctl)
+  4 (tap-hold $tap-time $hold-time 4 lsft)
+  7 (tap-hold $tap-time $hold-time 7 rsft)
+  8 (tap-hold $tap-time $hold-time 8 rctl)
+  9 (tap-hold $tap-time $hold-time 9 lalt)
+  0 (tap-hold $tap-time $hold-time 0 rmet)
+)
+
+(defalias
+  chleft (chord example left)
+  chdown (chord example down)
+  chup (chord example up)
+  chright (chord example right)
+)
+
+(defchords example 500
+  (left              ) (tap-hold $tap-time $hold-time esc @fun)
+  (     down         ) (tap-hold $tap-time $hold-time spc @nav)
+  (          up      ) (tap-hold $tap-time $hold-time bspc @sym)
+  (             right) (tap-hold $tap-time $hold-time ret @num)
+  (left down         ) (tap-hold $tap-time $hold-time tab @med)
+  (          up right) (tap-hold $tap-time $hold-time del @mou)
+)
+
+
+(defsrc
+  q    w    e    r    t    y    u    i    o    p    å
+  a    s    d    f    g    h    j    k    l    æ    ø
+  <    z    x    c    v    b    n    m    ,    .    -
+  lctl left down           up            right rmet rctl
+)
+
+;; The first layer defined is the layer that will be active by default when
+;; kanata starts up. This layer is the Colemak-DH layout.
+(deflayer colemak_dh
+
+  q    w    f    p    b    j    l    u    y    æ    å
+  @a   @r   @s   @t   g    m    @n   @e   @i   @o   ø
+  z    x    c    d    v    \    k    h    ,    .    -
+  lctl @chleft @chdown           @chup            @chright rmet rctl
+)
+
+(deflayer navigation
+    `      `    `    `     `     `    `    `    `    `    `
+  lmet  lalt  lctl  lsft   `    caps left down  up  right `   
+    `    `     `     `     `     ins   home  pgdn  pgup  end `   
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer symbol
+  ' <  @>   @Str .     @&  @/div  @[  @]  @% `
+  @!  -   +   @=  @#       @|  @div  @LP  @RP  @? `
+  @^  @/   @*   @\  @../     `  @~  @$  @{  @}  @@
+  lctl  lmet  spc           spc            ralt rmet rctl
+)
+
+(deflayer function
+  `    `    `    `  `   `  `   `    `    `    `
+  f1  f2  f3  f4   f5    f6    f7  f8  f9  f10    `
+  `    `    `  f11    `    `    `    f12   `    `    `
+  lctl left down           up            right rmet rctl
+)
+
+(deflayer numpad
+  `    `    `    `  `   `  `   `    `    `    `    
+  @1  @2  @3  @4  5       6   @7   @8   @9   @0    `
+  `    `    `    `   `  `  `   `    `    `    `
+  lctl  0   spc           lsft            ralt rmet rctl
+)
+
+(deflayer mouse
+  q    w    e    r    t    y    u    i    o    p    å
+  a    s    d    f    g    h    j    k    l    æ    ø
+  <    z    x    c    v    b    n    m    ,    .    -
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer media
+  q    w    e    r    t    y    u    i    o    p    å
+  a    s    d    f    g    h    j    k    l    æ    ø
+  <    z    x    c    v    b    n    m    ,    .    -
+  lctl lmet lalt           spc            ralt rmet rctl
+)

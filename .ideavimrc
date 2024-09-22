@@ -81,7 +81,7 @@ set easymotion
 set notimeout
 let mapleader = " "
 set which-key
-let g:WhichKey_FontSize = 16
+let g:WhichKey_FontSize = 20 
 let g:WhichKey_CommandColor = "#89b4fa"
 let g:WhichKey_PrefixColor = "#a6e3a1"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
@@ -214,11 +214,9 @@ let g:WhichKeyDesc_code_generation = "<leader>context"
 map <leader>j <Plug>(easymotion-s)
 map <leader>zc :action CollapseAllRegions<CR>
 map <leader>zo :action ExandAllRegions<CR>
-map <leader>ws <Action>(SplitHorizontally)
-map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 map <leader>wv <Action>(SplitVertically)
-map <leader>ws <Action>(SplitHorizontally)
+map <leader>wh <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 map <leader>de :action Debug<cr>
