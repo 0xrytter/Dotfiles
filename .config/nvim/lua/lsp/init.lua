@@ -62,20 +62,20 @@ if _lspconfig then
 		},
 	})
 
-    -- Elixir
-    lspconfig.elixirls.setup({
-        cmd = { vim.fn.stdpath("data") .. "/mason/bin/elixir-ls" },  -- Path to ElixirLS
-        on_attach = function(client, bufnr)
-            require("lsp.handlers").on_attach(client, bufnr)
-        end,
-        capabilities = capabilities,
-        settings = {
-            elixirLS = {
-                dialyzerEnabled = true,
-                fetchDeps = false,
-            },
-        },
-    })
+	-- Elixir
+	lspconfig.elixirls.setup({
+		cmd = { vim.fn.stdpath("data") .. "/mason/bin/elixir-ls" }, -- Path to ElixirLS
+		on_attach = function(client, bufnr)
+			require("lsp.handlers").on_attach(client, bufnr)
+		end,
+		capabilities = capabilities,
+		settings = {
+			elixirLS = {
+				dialyzerEnabled = true,
+				fetchDeps = false,
+			},
+		},
+	})
 
 	-- Clangd (C++)
 	lspconfig.clangd.setup({})
@@ -85,27 +85,27 @@ if _lspconfig then
 		autostart = false,
 	})
 
-   -- JavaScript/TypeScript using tsserver
-    lspconfig.tsserver.setup({
-        autostart = true,
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-            -- Optional: Disable tsserver formatting if using another formatter
-            client.server_capabilities.documentFormattingProvider = false
+	-- JavaScript/TypeScript using tsserver
+	lspconfig.ts_ls.setup({
+		autostart = true,
+		capabilities = capabilities,
+		on_attach = function(client, bufnr)
+			-- Optional: Disable tsserver formatting if using another formatter
+			client.server_capabilities.documentFormattingProvider = false
 
-            -- Custom on_attach function if needed
-            require("lsp.handlers").on_attach(client, bufnr)
-        end,
-    }) 
+			-- Custom on_attach function if needed
+			require("lsp.handlers").on_attach(client, bufnr)
+		end,
+	})
 
-    -- Svelte language server setup
-    lspconfig.svelte.setup({
-        autostart = true,
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-            require("lsp.handlers").on_attach(client, bufnr)
-        end,
-    })
+	-- Svelte language server setup
+	lspconfig.svelte.setup({
+		autostart = true,
+		capabilities = capabilities,
+		on_attach = function(client, bufnr)
+			require("lsp.handlers").on_attach(client, bufnr)
+		end,
+	})
 
 	-- Javascript/Typescript
 	lspconfig.eslint.setup({
@@ -120,6 +120,37 @@ if _lspconfig then
 				command = "EslintFixAll",
 			})
 		end,
+	})
+
+	lspconfig.tailwindcss.setup({
+		cmd = { vim.fn.stdpath("data") .. "/mason/bin/tailwindcss-language-server" },
+		capabilities = capabilities,
+		filetypes = {
+			"html",
+			"css",
+			"scss",
+			"sass",
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact",
+			"vue",
+			"svelte",
+			"heex",
+			"elixir",
+		},
+		init_options = {
+			userLanguages = {
+				elixir = "phoenix-heex",
+				heex = "phoenix-heex",
+			},
+		},
+		root_dir = lspconfig.util.root_pattern(
+			"tailwind.config.js",
+			"assets/tailwind.config.js",
+			"package.json",
+			".git"
+		),
 	})
 
 	-- HTML
