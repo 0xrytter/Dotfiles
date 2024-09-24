@@ -85,6 +85,28 @@ if _lspconfig then
 		autostart = false,
 	})
 
+   -- JavaScript/TypeScript using tsserver
+    lspconfig.tsserver.setup({
+        autostart = true,
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+            -- Optional: Disable tsserver formatting if using another formatter
+            client.server_capabilities.documentFormattingProvider = false
+
+            -- Custom on_attach function if needed
+            require("lsp.handlers").on_attach(client, bufnr)
+        end,
+    }) 
+
+    -- Svelte language server setup
+    lspconfig.svelte.setup({
+        autostart = true,
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+            require("lsp.handlers").on_attach(client, bufnr)
+        end,
+    })
+
 	-- Javascript/Typescript
 	lspconfig.eslint.setup({
 		autostart = true,
