@@ -62,19 +62,20 @@ local plugins = {
 	require("plugins.configs.harpoon"),
 	require("plugins.configs.bigfile"),
 	require("plugins.configs.splitjoin"), -- Quick split or join of lists
-    "mg979/vim-visual-multi",
+	"mg979/vim-visual-multi",
 	---- Code
 	require("plugins.configs.lspsaga"),
 	require("plugins.configs.refactor"),
 	require("plugins.configs.lens"),
 	require("plugins.configs.conform"), -- Formatting tool
-    require("plugins.configs.glance"),
+	require("plugins.configs.glance"),
+	require("plugins.configs.ts_autotag"),
 
 	---- LSP/DAP
 	require("plugins.configs.mason"),
 	require("plugins.configs.mason_conform"),
 	"neovim/nvim-lspconfig",
-    require("lsp.configs.dap"),
+	require("lsp.configs.dap"),
 	-- require("lsp.configs.java"),
 	-- require("lsp.configs.python"),
 

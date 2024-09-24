@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"hiphish/rainbow-delimiters.nvim",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"windwp/nvim-ts-autotag",
 		"nvim-treesitter/nvim-treesitter-refactor",
 		"nvim-treesitter/playground", -- View treesitter information directly in Neovim
 		"andymass/vim-matchup",
@@ -18,12 +17,9 @@ return {
 		vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
 		require("nvim-treesitter.configs").setup({
-            highlight = {
-                enable = true,  -- Enables syntax highlighting
-                additional_vim_regex_highlighting = false,  -- Disable Vim's regex highlighting
-            },
-			autotag = {
-				enable = true,
+			highlight = {
+				enable = true, -- Enables syntax highlighting
+				additional_vim_regex_highlighting = false, -- Disable Vim's regex highlighting
 			},
 			indent = {
 				enable = true,
@@ -44,10 +40,10 @@ return {
 				"javascript",
 				"typescript",
 				"vue",
-                "toml",
-                "elixir",
-                "heex",
-                "svelte",
+				"toml",
+				"elixir",
+				"heex",
+				"svelte",
 			},
 			refactor = {
 				highlight_definitions = {
