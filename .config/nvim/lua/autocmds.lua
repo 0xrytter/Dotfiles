@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = highlight_group,
 })
 
--- go to last loc when opening a buffer
+-- Go to last loc when opening a buffer
 api.nvim_create_autocmd("BufReadPost", {
 	callback = function()
 		local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -21,7 +21,15 @@ api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
--- make zsh files recognized as sh for bash-ls & treesitter
+-- Reload buffer after writing if it was changed outside
+api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*",
+	callback = function()
+		vim.cmd("checktime")
+	end,
+})
+
+-- Make zsh files recognized as sh for bash-ls & treesitter
 vim.filetype.add({
 	extension = {
 		zsh = "sh",
