@@ -5,6 +5,9 @@
   <action id="ForceStepOver">
     <keyboard-shortcut first-keystroke="f" second-keystroke="o" />
   </action>
+  <action id="GoToProject">
+    <keyboard-shortcut first-keystroke="shift ctrl alt g" />
+  </action>
   <action id="HideAllWindows">
     <keyboard-shortcut first-keystroke="shift ctrl alt s" />
   </action>
@@ -27,4 +30,7 @@
     <keyboard-shortcut first-keystroke="x" />
   </action>
   <action id="Uml.CollapseNodes" />
+  <action id="VimFindActionIdAction">
+    <keyboard-shortcut first-keystroke="shift ctrl alt enter" />
+  </action>
 </keymap>

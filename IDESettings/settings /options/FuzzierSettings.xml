@@ -1,0 +1,10 @@
+<application>
+  <component name="com.mituuz.fuzzier.FuzzierSettings">
+    <option name="modules">
+      <map>
+        <entry key="bajclean" value="$USER_HOME$/Software/bajclean" />
+      </map>
+    </option>
+    <option name="splitPosition" value="581" />
+  </component>
+</application>

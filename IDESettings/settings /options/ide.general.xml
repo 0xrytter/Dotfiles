@@ -9,5 +9,7 @@
     <entry key="ide.experimental.ui" value="true" />
     <entry key="enable.connection.configuration.widget" value="false" />
     <entry key="THIN_CLIENT_EXTERNAL_SYSTEM.system.in.process" value="true" />
+    <entry key="i18n.locale" value="" />
+    <entry key="eslint.additional.file.extensions" value="svelte" />
   </component>
 </application>

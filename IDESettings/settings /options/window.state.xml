@@ -1,6 +1,7 @@
 <application>
   <component name="DimensionService">
     <location key="find.popup.0.0.3440.1440" x="2257" y="167" />
+    <location key="find.popup.0.0.3440.1440@120dpi" x="319" y="318" />
     <size key="GridCell.Tab.0.left.0.0.3440.1440" width="1636" height="368" />
     <size key="GridCell.Tab.0.center.0.0.3440.1440" width="1636" height="368" />
     <size key="GridCell.Tab.0.right.0.0.3440.1440" width="1636" height="368" />
@@ -29,23 +30,32 @@
     <size key="GridCell.Tab.6.center.0.0.3440.1440" width="1636" height="367" />
     <size key="GridCell.Tab.6.right.0.0.3440.1440" width="1636" height="367" />
     <size key="GridCell.Tab.6.bottom.0.0.3440.1440" width="1636" height="367" />
-    <size key="find.popup.0.0.3440.1440" width="708" height="560" />
+    <size key="find.popup.0.0.3440.1440" width="645" height="560" />
+    <size key="find.popup.0.0.3440.1440@120dpi" width="796" height="698" />
   </component>
   <component name="WindowManager">
     <frame x="1720" y="32" width="1720" height="1408" extendedState="4" />
   </component>
   <component name="WindowStateApplicationService">
+    <state x="2314" y="443" width="522" height="594" key="#HTTP_Proxy" timestamp="1726221845366">
+      <screen x="0" y="32" width="3440" height="1408" />
+    </state>
+    <state x="2314" y="443" width="522" height="594" key="#HTTP_Proxy/0.32.3440.1408" timestamp="1726221845366" />
     <state x="480" y="477" width="750" height="524" key="APPLICATION_WIDE_STORE_#rider.projectView.actions.properties.EditPropertiesDialogProject" timestamp="1725440316696">
       <screen x="0" y="32" width="3440" height="1408" />
     </state>
     <state x="480" y="477" width="750" height="524" key="APPLICATION_WIDE_STORE_#rider.projectView.actions.properties.EditPropertiesDialogProject/0.32.3440.1408" timestamp="1725440316696" />
-    <state x="893" y="366" width="424" height="491" key="FileChooserDialogImpl" timestamp="1725459399386">
+    <state x="2400" y="418" width="431" height="491" key="FileChooserDialogImpl" timestamp="1727267165262">
       <screen x="0" y="32" width="3440" height="1408" />
     </state>
-    <state x="893" y="366" width="424" height="491" key="FileChooserDialogImpl/0.32.3440.1408" timestamp="1725459399386" />
-    <state x="1720" y="736" width="1720" height="1408" key="WELCOME_SCREEN" timestamp="1725801057612">
+    <state x="2400" y="418" width="431" height="491" key="FileChooserDialogImpl/0.32.3440.1408" timestamp="1727267165262" />
+    <state x="1720" y="736" width="1720" height="1408" key="WELCOME_SCREEN" timestamp="1727275703904">
       <screen x="0" y="32" width="3440" height="1408" />
     </state>
-    <state x="1720" y="736" width="1720" height="1408" key="WELCOME_SCREEN/0.32.3440.1408" timestamp="1725801057612" />
+    <state x="1720" y="736" width="1720" height="1408" key="WELCOME_SCREEN/0.32.3440.1408" timestamp="1727275703904" />
+    <state width="375" height="655" key="manage.recent.projects.popup" timestamp="1727003943819">
+      <screen x="0" y="32" width="3440" height="1408" />
+    </state>
+    <state width="375" height="655" key="manage.recent.projects.popup/0.32.3440.1408" timestamp="1727003943819" />
   </component>
 </application>

@@ -5,12 +5,6 @@
     </data-views>
     <general />
     <debuggers>
-      <debugger id="ObjectiveC">
-        <configuration>
-          <macOS-symbol-settings />
-          <nt-symbol-settings />
-        </configuration>
-      </debugger>
       <debugger id="javascript">
         <configuration>
           <custom-object-presentation />

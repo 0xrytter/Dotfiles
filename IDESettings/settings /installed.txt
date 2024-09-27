@@ -1,6 +1,10 @@
+com.rspn
 Scratch
 org.jetbrains.action-tracker
 com.github.catppuccin.jetbrains
+io.github.huzunrong.project-switcher
+org.github.erikzielke.gotoproject
+org.elixir_lang
 AceJump
 IdeaVIM
 org.jetbrains.IdeaVim-EasyMotion
@@ -8,4 +12,8 @@ com.joshestein.ideavim-quickscope
 ca.alexgirard.HarpoonIJ
 eu.theblob42.idea.whichkey
 youngstead.relative-line-numbers
+org.jetbrains.plugins.gitlab
+org.jetbrains.plugins.github
+dev.blachut.svelte.lang
+com.mituuz.fuzzier
 io.github.mishkun.ideavimsneak
