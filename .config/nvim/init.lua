@@ -956,7 +956,22 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'elixir', 'heex', 'svelte' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'elixir',
+        'heex',
+        'svelte',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -976,10 +991,10 @@ require('lazy').setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
-  { -- Oil.nvim alternative filebrowser, pretty dope
+  { -- oil.nvim alternative filebrowser, pretty dope
     'stevearc/oil.nvim',
     opts = {},
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons', enabled = true },
     config = function()
       require('oil').setup {
         default_file_explorer = true,
@@ -995,9 +1010,14 @@ require('lazy').setup({
         win_options = {
           wrap = true,
         },
+        lsp_file_methods = {
+          enabled = true, -- Enable LSP file operations
+          timeout_ms = 1000, -- Set a timeout for LSP operations
+          autosave_changes = false, -- Set to true if you want to autosave changes made by LSP
+        },
       }
-      -- Bind <leader>o to open Oil
-      vim.keymap.set('n', '<leader>o', '<CMD>Oil<CR>', { desc = 'Open Oil file explorer' })
+      -- bind <leader>o to open oil
+      vim.keymap.set('n', '<leader>o', '<cmd>Oil<cr>', { desc = 'open oil file explorer' })
     end,
   },
 
@@ -1007,14 +1027,49 @@ require('lazy').setup({
     'kristijanhusak/vim-dadbod-ui',
   },
 
-  -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
+  {
+    'epwalsh/obsidian.nvim',
+    version = '*', -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = 'markdown',
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+    --   -- refer to `:h file-pattern` for more examples
+    --   "BufReadPre path/to/my-vault/*.md",
+    --   "BufNewFile path/to/my-vault/*.md",
+    -- },
+    dependencies = {
+      -- Required.
+      'nvim-lua/plenary.nvim',
+
+      -- see below for full list of optional dependencies 👇
+    },
+    opts = {
+      workspaces = {
+        {
+          name = 'personal',
+          path = '~/vaults/personal',
+        },
+        {
+          name = 'work',
+          path = '~/vaults/work',
+        },
+      },
+
+      -- see below for full list of options 👇
+    },
+  },
+
+  -- the following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
+  -- init.lua. if you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
 
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
+  -- note: next step on your neovim journey: add/configure additional plugins for kickstart
   --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
+  --  here are some example plugins that i've included in the kickstart repository.
+  --  uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
