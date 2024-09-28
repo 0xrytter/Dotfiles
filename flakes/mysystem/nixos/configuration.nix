@@ -149,6 +149,7 @@
   environment.systemPackages = with pkgs; [
     gwe
     git
+    gh
     keepassxc
     ungoogled-chromium
     brave
