@@ -152,7 +152,6 @@
     gh
     keepassxc
     ungoogled-chromium
-    brave
     tmux
     neovim
     discord

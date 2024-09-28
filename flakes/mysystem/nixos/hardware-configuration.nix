@@ -14,18 +14,18 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2d62861b-5ccc-4bce-93e5-887d2fa2f7b5";
+    { device = "/dev/disk/by-uuid/79f1a70b-8320-494c-b4a4-528e0da22402";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/15A1-568A";
+    { device = "/dev/disk/by-uuid/3767-545F";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/2b2aff1e-caff-4049-98e9-9553a989edd2"; }
+    [ { device = "/dev/disk/by-uuid/84a0682e-a3d6-41ac-9504-01889e438519"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

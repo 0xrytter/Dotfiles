@@ -1,3 +1,20 @@
+!DONOT LET THE SYSTEM HANDLE GITHUB CREDENTIALS
+!USE THE GH CLI INSTEAD SEE BELOW
+
+After placing .gitconfig in the home dir use
+gh auth login
+
+to auth.
+
+if problems check gh location on system with
+
+which gh
+
+And ensure path to credential helper in .gitconfig mirrors output. Output example below
+
+[credential]
+    helper = !/path/to/gh auth git-credential
+
 For reading the config for alacritty alacritty --config-file ~/.config/alacritty/alacritty.toml
 
 To set zsh as the default shell for both the user and tmux
