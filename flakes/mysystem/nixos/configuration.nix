@@ -103,7 +103,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
 
@@ -142,7 +142,12 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  #To here
+
+  programs.nix-ld.enable = true;
+
+  fonts.packages = with pkgs; [
+  (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -150,6 +155,15 @@
     gwe
     git
     gh
+    gcc13
+    gnumake
+    unzip
+    ripgrep
+    wget
+    vimPlugins.telescope-live-grep-args-nvim
+    xclip
+    wl-clipboard
+    stow
     keepassxc
     ungoogled-chromium
     tmux
@@ -159,10 +173,12 @@
     jetbrains.webstorm
     jetbrains.rider
     wezterm
+    kitty
+    alacritty
     lazygit
     lazydocker
     docker
-    dotnetCorePackages.sdk_8_0_2xx
+    dotnetCorePackages.sdk_8_0_4xx
     dotnetCorePackages.sdk_9_0
     erlang
     elixir
@@ -171,6 +187,8 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
+
+  #To here
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
