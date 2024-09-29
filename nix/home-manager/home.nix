@@ -37,11 +37,11 @@
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
+  # Use mkOutOfStoreSymlink for the Neovim configuration directory
   home.file = {
-      "." = {
-      source = ./../..;   # Adjust this path to be relative to where your flake/home.nix is located
-      recursive = true;            # Enable recursive symlinking of all contents
+    ".config/nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
+      recursive = true;
     };
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
