@@ -40,7 +40,7 @@
   # plain files is through 'home.file'.
   home.file = {
       "." = {
-      source = ./../../dotfiles;   # Adjust this path to be relative to where your flake/home.nix is located
+      source = ./../..;   # Adjust this path to be relative to where your flake/home.nix is located
       recursive = true;            # Enable recursive symlinking of all contents
     };
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
