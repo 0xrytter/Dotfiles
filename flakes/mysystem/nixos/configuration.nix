@@ -98,8 +98,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  #From here added
+  # From here added
 
+  # Enable flakes for structuring os configuration
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Enable OpenGL
@@ -143,8 +144,10 @@
   };
 
 
+  # Allow programs to execute other executables on nix. Specifically neccessary for mason to launch LSP servers in neovim 
   programs.nix-ld.enable = true;
 
+  # Add nerd font for proper icon and font rendering in terminal and other programs
   fonts.packages = with pkgs; [
   (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
@@ -155,6 +158,7 @@
     gwe
     git
     gh
+    # Dependencies for neovim and others
     gcc13
     gnumake
     unzip
@@ -163,6 +167,7 @@
     vimPlugins.telescope-live-grep-args-nvim
     xclip
     wl-clipboard
+    # Applications
     stow
     keepassxc
     ungoogled-chromium
