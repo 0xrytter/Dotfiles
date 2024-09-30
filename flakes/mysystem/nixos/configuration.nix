@@ -165,8 +165,10 @@
     # Dependencies for neovim and others
     gcc13
     gnumake
+    clang
     unzip
     ripgrep
+    coreutils
     wget
     vimPlugins.telescope-live-grep-args-nvim
     xclip
@@ -176,6 +178,8 @@
     # Z shell dependencies
     fzf
     zoxide
+    # Doom emacs dependencies
+    fd
     # Applications
     stow
     obsidian
