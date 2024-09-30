@@ -6,6 +6,8 @@ config.window_background_opacity = 0.95 -- Adjust this value as needed
 
 config.color_scheme = "Catppuccin Mocha"
 
+config.front_end = "WebGpu"
+
 config.enable_tab_bar = false
 
 config.window_padding = {
@@ -58,7 +60,7 @@ config.mouse_bindings = {
 -- Selection settings (not directly supported, so we can skip this)
 
 -- Shell settings
-config.default_prog = { "/usr/bin/tmux" }
+config.default_prog = { "/run/current-system/sw/bin/tmux" }
 
 -- Window settings
 config.window_decorations = "NONE" -- Full decorations

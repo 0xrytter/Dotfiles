@@ -100,6 +100,10 @@
 
   # From here added
 
+  # Add z-shell
+  programs.zsh.enable = true;
+  users.users.rytter.shell = pkgs.zsh;
+
   # Enable flakes for structuring os configuration
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -167,8 +171,16 @@
     vimPlugins.telescope-live-grep-args-nvim
     xclip
     wl-clipboard
+    # Kitty dependencies
+    libxkbcommon
+    # Z shell dependencies
+    fzf
+    zoxide
     # Applications
     stow
+    obsidian
+    i3
+    sway
     keepassxc
     ungoogled-chromium
     tmux
@@ -183,12 +195,13 @@
     lazygit
     lazydocker
     docker
-    dotnetCorePackages.sdk_8_0_4xx
-    dotnetCorePackages.sdk_9_0
+    # Combine multiple .NET SDKs using combinePackages function.
+    (with dotnetCorePackages; combinePackages [ sdk_8_0_4xx sdk_9_0 ])
     erlang
     elixir
     nodejs_22
     python3
+    emacs
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];

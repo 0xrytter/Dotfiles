@@ -619,6 +619,7 @@ require('lazy').setup({
         dockerls = {},
         docker_compose_language_service = {},
         tailwindcss = {},
+        omnisharp = {},
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -975,6 +976,7 @@ require('lazy').setup({
         'elixir',
         'heex',
         'svelte',
+        'c_sharp',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
