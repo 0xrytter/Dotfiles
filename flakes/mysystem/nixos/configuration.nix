@@ -100,7 +100,7 @@
   users.users.rytter = {
     isNormalUser = true;
     description = "Jakob Rytter";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "users" "uinput" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -162,7 +162,6 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-
   # Allow programs to execute other executables on nix. Specifically neccessary for mason to launch LSP servers in neovim 
   programs.nix-ld.enable = true;
 
@@ -170,6 +169,11 @@
   fonts.packages = with pkgs; [
   (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
+
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2201", GROUP="users", MODE="0666"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2200", GROUP="users", MODE="0666"
+  '';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -195,8 +199,10 @@
     zoxide
     # Doom emacs dependencies
     fd
-    #Bazecor dependencies
-    fuse
+    # Bazecor dependencies
+    bazecor
+    # Kanata
+    kanata
     # Applications
     stow
     obsidian

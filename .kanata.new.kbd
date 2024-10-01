@@ -1,0 +1,333 @@
+#| *************
+   Configuration
+   ************* |#
+(defcfg
+  ;; Allow kanata to process keys even if not defined
+  process-unmapped-keys yes
+)
+
+(deflocalkeys-win
+  æ 192
+  ø 222
+  å 221
+  ¨ 186
+  ´ 219
+  ' 191
+
+  RTick 219
+  LP 56
+  RP 57
+  Str 50
+  ? 187
+  ^ 186
+  ¤ 52 
+  % 53
+  & 54
+  * 191
+  ! 49
+  # 51
+  > 226
+  = 48
+  / 55
+
+  { 55
+  } 48
+  [ 56
+  ] 57
+  ~ 186
+  | 219
+  € 5
+  $ 52
+  £ 51
+  @ 50
+  \ 226
+)
+
+(deflocalkeys-linux
+  æ 39
+  ø 40
+  å 26
+  ¨ 27
+  ´ 13
+  ' 43
+
+  RTick 13
+  LP 9
+  RP 10
+  Str 3
+  ? 12
+  ^ 27
+  ¤ 5
+  % 6
+  & 7
+  * 43
+  ! 2
+  # 4
+  > 86
+  = 11
+  / 8
+
+  { 8
+  } 11
+  [ 9
+  ] 10
+  ~ 27
+  | 13
+  € 6
+  $ 5
+  £ 4
+  @ 3
+  \ 86
+
+  - 53
+)
+
+(defalias
+  LP (multi lshft LP)
+  RP (multi lshft RP)
+  Str (multi lshft Str)
+  ? (multi lshft ?)
+  ^ (multi lshft ^)
+  ¤ (multi lshft ¤)
+  % (multi lshft %)
+  & (multi lshft &)
+  * (multi lshft *)
+  ! (multi lshft !)
+  # (multi lshft #)
+  > (multi lshft >)
+  = (multi lshft =)
+  / (multi lshft /)
+  
+
+  { (multi ralt {)
+  } (multi ralt })
+  [ (multi ralt [)
+  ] (multi ralt ])
+  ~ (multi ralt ~)
+  | (multi ralt |)
+  € (multi ralt €)
+  $ (multi ralt $)
+  £ (multi ralt £)
+  @ (multi ralt @)
+  \ (multi ralt \)
+
+  ../ (macro . . S-(/))
+  div (macro < d i v S-(<))
+  /div (macro < S-(/) d i v S-(<))
+)
+
+#| ******
+   Source
+   ****** |#
+(defsrc
+  q    w    e    r    t    y    u    i    o    p    å
+  a    s    d    f    g    h    j    k    l    æ    ø
+  <    z    x    c    v    b    n    m    ,    .    -
+  lctl left down           up            right rmet rctl
+)
+
+#| *************
+   Dvorak layers
+   ************* |#
+(deflayer colemak
+
+  q    w    f    p    b    j    l    u    y    æ    å
+  @a   @r   @s   @t   g    m    @n   @e   @i   @o   ø
+  z    x    c    d    v    \    k    h    ,    .    -
+  lctl @chleft @chdown           @chup            @chright rmet rctl
+)
+
+(deflayer colemak-nomod
+
+  q    w    f    p    b    j    l    u    y    æ    å
+  @a   @r   @s   @t   g    m    @n   @e   @i   @o   ø
+  z    x    c    d    v    \    k    h    ,    .    -
+  lctl @chleft @chdown           @chup            @chright rmet rctl
+)
+
+#| *************
+   QWERTY layers
+   ************* |#
+(deflayer qwerty-clean
+   q    w    e    r    t    y    u    i    o    p    [
+   a    s    d    f    g    h    j    k    l    ;    '
+   z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc             rmet cmp  rctl
+)
+
+#| *****
+   Navigation
+   ***** |#
+(deflayer navigation
+    `      `    `    `     `     `    `    `    `    `    `
+  left  down  up  right   `    `    `    `    `    `  	`   
+    `    `     `     `     `     ins   home  pgdn  pgup  end `   
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+#| *****
+   Symbol
+   ***** |#
+(deflayer symbol
+  ' <  @>   @Str .     @&  @/div  @[  @]  @% `
+  @!  -   +   @=  @#       @|  @div  @LP  @RP  @? `
+  @^  @/   @*   @\  @../     `  @~  @$  @{  @}  @@
+  lctl  lmet  spc           spc            ralt rmet rctl
+)
+
+#| *****
+   Numpad
+   ***** |#
+(deflayer numpad
+  `    `    `    `  `   `  `   `    `    `    `    
+  @1  @2  @3  @4  5       6   @7   @8   @9   @0    `
+  `    `    `    `   `  `  `   `    `    `    `
+  lctl  0   spc           lsft            ralt rmet rctl
+)
+
+#| *****
+   Function
+   ***** |#
+(deflayer function
+  `    `    `    `  `   `  `   `    `    `    `
+  f1  f2  f3  f4   f5    f6    f7  f8  f9  f10    `
+  `    `    `  f11    `    `    `    f12   `    `    `
+  lctl left down           up            right rmet rctl
+)
+
+#| ***********
+    Mouse
+   *********** |#
+(deflayer mouse
+  q    w    e    r    t    y    u    i    o    p    å
+  a    s    d    f    g    h    j    k    l    æ    ø
+  <    z    x    c    v    b    n    m    ,    .    -
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+#| ************
+    Media
+   ************ |#
+(deflayer media
+  q    w    e    r    t    y    u    i    o    p    å
+  a    s    d    f    g    h    j    k    l    æ    ø
+  <    z    x    c    v    b    n    m    ,    .    -
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+#| *********
+   Variables
+   ********* |#
+(defvar
+  ;; Set tap/hold time for layer tap-hold
+  layer-tap-time 200
+  layer-hold-time 160
+
+  ;; Set tap/hold time for space tap-hold
+  spc-tap-time 200
+  spc-hold-time 200
+
+  ;; Set tap/hold time for homerow mods
+  sft-tap 300
+  ctl-tap 300
+  alt-tap 300
+  met-tap 300
+
+  sft-hold 175
+  ctl-hold 215
+  alt-hold 230
+  met-hold 250
+
+  ;; Define left and right hand keys for high-speed typing
+
+  lh-keys (
+    q w f p b
+    a r s t g
+    z x c d v
+  )
+
+  rh-keys (
+    j l u y
+    m n e i o
+    k h , . -
+  )
+
+  lh-nums (
+    ' ' ' '
+    1 2 3 4 5
+    ' ' ' ' '
+  )
+
+  rh-nums (
+    ' ' ' '
+    6 7 8 9 0
+    ' ' ' ' '
+  )
+)
+
+#| *******
+   Aliases
+   ******* |#
+(defalias
+  ;; tap: backtick (`), hold: layer-switch toggle
+  nav (tap-hold $layer-tap-time $layer-hold-time bspc (layer-toggle navigation))
+
+  ;; tap: caps-word, hold: caps
+  sym (tap-hold $spc-tap-time $spc-hold-time spc (layer-toggle symbol))
+
+  ;; tap: j, hold: lower layer
+  num (tap-hold $layer-tap-time $layer-hold-time ret (layer-toggle numpad))
+
+  ;; tap: m, hold: raise layer
+  fun (tap-hold $layer-tap-time $layer-hold-time esc (layer-toggle function))
+
+  ;; tap: m, hold: raise layer
+  med (tap-hold $layer-tap-time $layer-hold-time tab (layer-toggle media))
+
+  ;; tap: space, hold: space layer
+  mou (tap-hold-release $layer-tap-time $layer-hold-time del (layer-toggle mouse))
+
+  ;; Homerow mods
+  tap (multi
+    (layer-switch colemak-nomod)
+    (on-idle-fakekey to-base tap 20)
+  )
+
+  a (tap-hold-release-keys $met-tap $met-hold (multi a @tap) lmet $lh-keys)
+  r (tap-hold-release-keys $alt-tap $alt-hold (multi r @tap) lalt $lh-keys)
+  s (tap-hold-release-keys $sft-tap $sft-hold (multi s @tap) lsft $lh-keys)
+  t (tap-hold-release-keys $ctl-tap $ctl-hold (multi t @tap) lctl $lh-keys)
+  n (tap-hold-release-keys $ctl-tap $ctl-hold (multi n @tap) rctl $rh-keys)
+  e (tap-hold-release-keys $sft-tap $sft-hold (multi e @tap) rsft $rh-keys)
+  i (tap-hold-release-keys $alt-tap $alt-hold (multi i @tap) ralt $rh-keys)
+  o (tap-hold-release-keys $met-tap $met-hold (multi o @tap) rmet $rh-keys)
+
+  1 (tap-hold-release-keys $met-tap $met-hold (multi 1 @tap) lmet $lh-nums)
+  2 (tap-hold-release-keys $alt-tap $alt-hold (multi 2 @tap) lalt $lh-nums)
+  3 (tap-hold-release-keys $sft-tap $sft-hold (multi 3 @tap) lsft $lh-nums)
+  4 (tap-hold-release-keys $ctl-tap $ctl-hold (multi 4 @tap) lctl $lh-nums)
+  7 (tap-hold-release-keys $ctl-tap $ctl-hold (multi 7 @tap) rctl $rh-nums)
+  8 (tap-hold-release-keys $sft-tap $sft-hold (multi 8 @tap) rsft $rh-nums)
+  9 (tap-hold-release-keys $alt-tap $alt-hold (multi 9 @tap) ralt $rh-nums)
+  0 (tap-hold-release-keys $met-tap $met-hold (multi 0 @tap) rmet $rh-nums)
+)
+
+(defalias
+  chleft (chord example left)
+  chdown (chord example down)
+  chup (chord example up)
+  chright (chord example right)
+)
+
+(defchords example 500
+  (left              ) @fun
+  (     down         ) @sym
+  (          up      ) @nav
+  (             right) @num
+  (left down         ) @med
+  (          up right) @mou
+)
+
+(deffakekeys
+  to-base (layer-switch colemak)
+)

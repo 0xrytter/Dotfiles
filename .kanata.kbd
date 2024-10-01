@@ -151,8 +151,8 @@
 
 (defchords example 500
   (left              ) (tap-hold $tap-time $hold-time esc @fun)
-  (     down         ) (tap-hold $tap-time $hold-time spc @nav)
-  (          up      ) (tap-hold $tap-time $hold-time bspc @sym)
+  (     down         ) (tap-hold $tap-time $hold-time spc @sym)
+  (          up      ) (tap-hold $tap-time $hold-time bspc @nav)
   (             right) (tap-hold $tap-time $hold-time ret @num)
   (left down         ) (tap-hold $tap-time $hold-time tab @med)
   (          up right) (tap-hold $tap-time $hold-time del @mou)
@@ -167,7 +167,7 @@
 )
 
 ;; The first layer defined is the layer that will be active by default when
-;; kanata starts up. This layer is the Colemak-DH layout.
+;; kanata starts up. This layer is the Colemak-DH layout
 (deflayer colemak_dh
 
   q    w    f    p    b    j    l    u    y    æ    å
@@ -178,7 +178,7 @@
 
 (deflayer navigation
     `      `    `    `     `     `    `    `    `    `    `
-  lmet  lalt  lctl  lsft   `    caps left down  up  right `   
+  left  down  up  right   `    `    `    `    `    `  	`   
     `    `     `     `     `     ins   home  pgdn  pgup  end `   
   lctl lmet lalt           spc            ralt rmet rctl
 )
