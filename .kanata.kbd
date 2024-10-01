@@ -119,6 +119,7 @@
 (defalias num (layer-while-held numpad))
 (defalias mou (layer-while-held mouse))
 (defalias med (layer-while-held media))
+(defalias test (layer-switch custom_layer))
 
 (defalias
   a (tap-hold $tap-time $hold-time a lmet)
@@ -176,9 +177,17 @@
   lctl @chleft @chdown           @chup            @chright rmet rctl
 )
 
+;; Define a new layer called 'custom_layer'
+(deflayer custom_layer
+  ' <  @>   @Str .     @&  @/div  @[  @]  @% `
+  @!  -   +   @=  @#       @|  @div  @LP  @RP  @? `
+  @^  @/   @*   @\  @../     `  @~  @$  @{  @}  @@
+  lctl  lmet  spc           spc            ralt rmet rctl
+)
+
 (deflayer navigation
     `      `    `    `     `     `    `    `    `    `    `
-  left  down  up  right   `    `    `    `    `    `  	`   
+  left  down  up  right   `    `    @test    `    `    `  	`   
     `    `     `     `     `     ins   home  pgdn  pgup  end `   
   lctl lmet lalt           spc            ralt rmet rctl
 )

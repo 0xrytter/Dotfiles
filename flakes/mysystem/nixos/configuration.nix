@@ -116,8 +116,8 @@
   # From here added
 
   # Add z-shell
-  programs.zsh.enable = true;
-  users.users.rytter.shell = pkgs.zsh;
+  programs.fish.enable = true;
+  users.users.rytter.shell = pkgs.fish;
 
   # Enable flakes for structuring os configuration
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
