@@ -415,6 +415,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S] Search commands' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -977,6 +978,9 @@ require('lazy').setup({
         'heex',
         'svelte',
         'c_sharp',
+        'tsx',
+        'typescript',
+        'javascript',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -1036,7 +1040,7 @@ require('lazy').setup({
   {
     'epwalsh/obsidian.nvim',
     version = '*', -- recommended, use latest release instead of latest commit
-    lazy = true,
+    lazy = false,
     ft = 'markdown',
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
     -- event = {
@@ -1055,13 +1059,13 @@ require('lazy').setup({
     opts = {
       workspaces = {
         {
-          name = 'personal',
-          path = '~/vaults/personal',
+          name = 'default',
+          path = '~/notes/default',
         },
-        {
-          name = 'work',
-          path = '~/vaults/work',
-        },
+        -- {
+        --   name = 'work',
+        --   path = '~/notes/work',
+        -- },
       },
 
       -- see below for full list of options 👇
