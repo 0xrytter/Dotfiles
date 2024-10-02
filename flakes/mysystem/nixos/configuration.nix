@@ -207,6 +207,7 @@
     stow
     obsidian
     i3
+    brave
     sway
     keepassxc
     ungoogled-chromium
