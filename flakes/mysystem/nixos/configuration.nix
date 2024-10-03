@@ -100,33 +100,7 @@
 
   # From here added
 
-
-  #Hyprland setup
-  programs.hyprland = {
-    enable = true;
-    #nvidiaPatches = true;
-    xwayland.enable = true;
-  };
-
-  environment.sessionVariables = {
-    # If your cursor becomes invisible
-    WLR_NO_HARDWARE_CURSORS = "1";
-    # HInt electron apps to use wayland
-    NIXOS_OZONE_WL = "1";
-  };
-
-  hardware = {
-    # Opengl
-    opengl.enable = true;
-
-    # Most wayland compositors need this
-    #nvidia.modesettings.enable = true;
-  };
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-  # Add fish
+  # Add z-shell
   programs.fish.enable = true;
   users.users.rytter.shell = pkgs.fish;
 
@@ -203,17 +177,6 @@
     vimPlugins.telescope-live-grep-args-nvim
     xclip
     wl-clipboard
-    # Hyprland
-    (waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      })
-    )
-    waybar
-    dunst
-    libnotify
-    swww
-    rofi-wayland
-    kitty
     # Kitty dependencies
     libxkbcommon
     # Z shell dependencies
