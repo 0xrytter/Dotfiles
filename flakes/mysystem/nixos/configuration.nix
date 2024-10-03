@@ -46,24 +46,9 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-
-  # Enable i3 as the window manager.
-  services.xserver.windowManager.i3 = {
-    enable = true;
-    extraPackages = with pkgs; [
-      dmenu       # Application launcher
-      i3status    # Status bar
-      # Add other utilities you may find useful
-    ];
-  };
-
-  # Set the default session to none+i3 if using SDDM.
-  services.xserver.displayManager.defaultSession = "none+i3";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -206,7 +191,6 @@
     # Applications
     stow
     obsidian
-    i3
     brave
     sway
     keepassxc
@@ -231,6 +215,7 @@
     pnpm
     python3
     emacs
+    webcord
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
