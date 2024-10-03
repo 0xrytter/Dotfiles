@@ -44,7 +44,27 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+
+  services.xserver = {
+    enable = true;
+    desktopManager = {xterm.enable=false;};
+    displayManager = {
+      defaultSession = "none+i3";
+    };
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+	i3lock
+	i3blocks
+      ];
+    };
+  };
+
+  #services.xserver.enable = true;
+  services.xserver.windowManager.i3.package = pkgs.i3-gaps;
+  programs.dconf.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
