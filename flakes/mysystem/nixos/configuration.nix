@@ -28,7 +28,7 @@
   time.timeZone = "Europe/Copenhagen";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.defaultLocale = "en_DK.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "da_DK.UTF-8";
@@ -43,32 +43,15 @@
   };
 
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
+  services.xserver.enable = true;
 
-  services.xserver = {
-    enable = true;
-    desktopManager = {xterm.enable=false;};
-    displayManager = {
-      defaultSession = "none+i3";
-    };
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3status
-	i3lock
-	i3blocks
-      ];
-    };
-  };
-
-  #services.xserver.enable = true;
-  services.xserver.windowManager.i3.package = pkgs.i3-gaps;
-  programs.dconf.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  
+  # Added wayland support
+  services.xserver.displayManager.gdm.wayland = true;
+  services.xserver.displayManager.sessionPackages = with pkgs; [ sway ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -105,9 +88,8 @@
   users.users.rytter = {
     isNormalUser = true;
     description = "Jakob Rytter";
-    extraGroups = [ "networkmanager" "wheel" "users" "uinput" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
     #  thunderbird
     ];
   };
@@ -117,18 +99,54 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  
+  # Added from here
 
-  # From here added
 
-  # Add z-shell
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+
+  services.xserver = {
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu #application launcher most people use
+        i3status # gives you the default i3 status bar
+        i3lock #default i3 screen locker
+        i3blocks #if you are planning on using i3blocks over i3status
+     ];
+    };
+  };
+
+  # Enable the gnome-keyring secrets vault. 
+  # Will be exposed through DBus to programs willing to store secrets.
+  services.gnome.gnome-keyring.enable = true;
+  
+  
+  # Add fish
   programs.fish.enable = true;
   users.users.rytter.shell = pkgs.fish;
-
-  # Enable flakes for structuring os configuration
+  
+  # Enable Sway window manager
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraOptions = [ "--unsupported-gpu" ];
+  };
+  
+  # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  # Allow programs to execute other executables on nix. Specifically neccessary for 		 mason to launch LSP servers in neovim 
+  programs.nix-ld.enable = true;
 
-# Enable OpenGL
-  hardware.graphics = {
+  # Add nerd font for proper icon and font rendering in terminal and other programs
+  fonts.packages = with pkgs; [
+  (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+  
+   # Enable OpenGL
+  hardware.opengl = {
     enable = true;
   };
 
@@ -142,7 +160,7 @@
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
     powerManagement.enable = false;
 
@@ -152,9 +170,9 @@
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: 
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
@@ -166,81 +184,72 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-  # Allow programs to execute other executables on nix. Specifically neccessary for mason to launch LSP servers in neovim 
-  programs.nix-ld.enable = true;
-
-  # Add nerd font for proper icon and font rendering in terminal and other programs
-  fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
-
-  services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2201", GROUP="users", MODE="0666"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2200", GROUP="users", MODE="0666"
-  '';
+  
+  # Added to here
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    gwe
-    git
-    gh
-    # Dependencies for neovim and others
-    gcc13
-    gnumake
-    clang
-    unzip
-    ripgrep
-    coreutils
-    wget
-    vimPlugins.telescope-live-grep-args-nvim
-    xclip
-    wl-clipboard
-    # Kitty dependencies
-    libxkbcommon
-    # Z shell dependencies
-    fzf
-    zoxide
-    # Doom emacs dependencies
-    fd
-    # Bazecor dependencies
-    bazecor
-    # Kanata
-    kanata
-    # Applications
-    stow
-    obsidian
-    brave
-    sway
-    keepassxc
-    ungoogled-chromium
-    tmux
-    neovim
-    discord
-    discordo
-    jetbrains.webstorm
-    jetbrains.rider
-    wezterm
-    kitty
-    alacritty
-    lazygit
-    lazydocker
-    docker
-    # Combine multiple .NET SDKs using combinePackages function.
-    (with dotnetCorePackages; combinePackages [ sdk_8_0_4xx sdk_9_0 ])
-    erlang
-    elixir
-    nodejs_22
-    pnpm
-    python3
-    emacs
-    webcord
+     gwe
+     git
+     gh
+     # Dependencies for neovim and others
+     gcc13
+     gnumake
+     clang
+     unzip
+     ripgrep
+     coreutils
+     wget
+     vimPlugins.telescope-live-grep-args-nvim
+     xclip
+     wl-clipboard
+     # Kitty dependencies
+     libxkbcommon
+     # Z shell dependencies
+     fzf
+     zoxide
+     # Doom emacs dependencies
+     fd
+     # Bazecor dependencies
+     bazecor
+     # Kanata
+     kanata
+     # Applications
+     stow
+     obsidian
+     brave
+     keepassxc
+     ungoogled-chromium
+     tmux
+     neovim
+     discord
+     discordo
+     jetbrains.webstorm
+     jetbrains.rider
+     wezterm
+     kitty
+     alacritty
+     lazygit
+     lazydocker
+     docker
+     # Combine multiple .NET SDKs using combinePackages function.
+     (with dotnetCorePackages; combinePackages [ sdk_8_0_4xx sdk_9_0 ])
+     erlang
+     elixir
+     nodejs_22
+     pnpm
+     python3
+     emacs
+     webcord
+  
+     grim # screenshot functionality
+     slurp # screenshot functionality
+     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+     mako # notification system developed by swaywm maintainer
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
-
-  #To here
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
