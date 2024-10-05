@@ -46,12 +46,13 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = false;
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   
   # Added wayland support
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.displayManager.sessionPackages = with pkgs; [ sway ];
+  services.xserver.displayManager.gdm.wayland = false;
+  services.xserver.displayManager.sessionPackages = with pkgs; [ hyprland ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -102,44 +103,29 @@
   
   # Added from here
 
-  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+  # All the hyprland nonsense
 
-  services.xserver = {
-    windowManager.bspwm.enable = true;
-
-    windowManager.awesome = {
+  programs.hyprland = {
     enable = true;
-    luaModules = with pkgs.luaPackages; [
-      luarocks
-      luadbi-mysql
-    ];
+    xwayland.enable = true;
   };
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu #application launcher most people use
-        i3status # gives you the default i3 status bar
-        i3lock #default i3 screen locker
-        i3blocks #if you are planning on using i3blocks over i3status
-     ];
-    };
+
+  environment.sessionVariables = {
+    # If your cursor becomes invisible
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # Hin electron apps to use wayland
+    NIXOS_OZONE_WL = "1";
   };
+
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
 
   # Enable the gnome-keyring secrets vault. 
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
   
-  
   # Add fish
   programs.fish.enable = true;
   users.users.rytter.shell = pkgs.fish;
-  
-  # Enable Sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraOptions = [ "--unsupported-gpu" ];
-  };
   
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -191,6 +177,8 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  xdg.portal.enable = true;
   
   # Added to here
 
@@ -226,6 +214,20 @@
      picom
      # Applications
      stow
+     # Hyprland
+     networkmanagerapplet
+     waybar
+     dunst
+     libnotify
+     swww
+     kitty
+     rofi-wayland
+     grim
+     slurp
+     (waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      })
+     )
      obsidian
      brave
      keepassxc
@@ -251,10 +253,6 @@
      python3
      webcord
   
-     grim # screenshot functionality
-     slurp # screenshot functionality
-     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-     mako # notification system developed by swaywm maintainer
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
