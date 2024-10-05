@@ -1,3 +1,11 @@
+
+(defcfg
+  linux-dev (
+    /dev/input/by-id/usb-Dygma_Raise_C96D1FD65055544B302E3120FF192A3FraiseD-event-if02
+    /dev/input/by-id/usb-Dygma_Raise_C96D1FD65055544B302E3120FF192A3FraiseD-if02-event-kbd
+  )
+)
+
 (deflocalkeys-win
   æ 192
   ø 222
@@ -109,8 +117,8 @@
 )
 
 (defvar
-  tap-time 300
-  hold-time 250
+  tap-time 260
+  hold-time 210
 )
 
 (defalias nav (layer-while-held navigation))

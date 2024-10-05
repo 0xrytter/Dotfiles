@@ -4,6 +4,10 @@
 (defcfg
   ;; Allow kanata to process keys even if not defined
   process-unmapped-keys yes
+  linux-dev (
+    /dev/input/by-id/usb-Dygma_Raise_C96D1FD65055544B302E3120FF192A3FraiseD-event-if02
+    /dev/input/by-id/usb-Dygma_Raise_C96D1FD65055544B302E3120FF192A3FraiseD-if02-event-kbd
+  )
 )
 
 (deflocalkeys-win
@@ -220,12 +224,12 @@
    ********* |#
 (defvar
   ;; Set tap/hold time for layer tap-hold
-  layer-tap-time 200
-  layer-hold-time 160
+  layer-tap-time 300
+  layer-hold-time 250
 
   ;; Set tap/hold time for space tap-hold
-  spc-tap-time 200
-  spc-hold-time 200
+  spc-tap-time 300
+  spc-hold-time 250
 
   ;; Set tap/hold time for homerow mods
   sft-tap 300
@@ -233,9 +237,9 @@
   alt-tap 300
   met-tap 300
 
-  sft-hold 175
-  ctl-hold 215
-  alt-hold 230
+  sft-hold 250
+  ctl-hold 250
+  alt-hold 250
   met-hold 250
 
   ;; Define left and right hand keys for high-speed typing
@@ -290,7 +294,7 @@
   ;; Homerow mods
   tap (multi
     (layer-switch colemak-nomod)
-    (on-idle-fakekey to-base tap 20)
+    (on-idle-fakekey to-base tap 300)
   )
 
   a (tap-hold-release-keys $met-tap $met-hold (multi a @tap) lmet $lh-keys)
