@@ -102,11 +102,18 @@
   
   # Added from here
 
-
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
 
   services.xserver = {
+    windowManager.bspwm.enable = true;
 
+    windowManager.awesome = {
+    enable = true;
+    luaModules = with pkgs.luaPackages; [
+      luarocks
+      luadbi-mysql
+    ];
+  };
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
@@ -215,6 +222,8 @@
      bazecor
      # Kanata
      kanata
+     #AwesomeWM
+     picom
      # Applications
      stow
      obsidian
