@@ -1,6 +1,0 @@
-Dadbod saves servers to /.local/share/db-ui/connections to json. 
-If for whatever reason it wont starte, purge this file or the content in there
-Causing the problem.
-
-mssql string formatting for dadbod
-
