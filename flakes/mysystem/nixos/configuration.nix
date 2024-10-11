@@ -113,7 +113,7 @@
   environment.sessionVariables = {
     # If your cursor becomes invisible
     WLR_NO_HARDWARE_CURSORS = "1";
-    # Hin electron apps to use wayland
+    # Hint electron apps to use wayland
     NIXOS_OZONE_WL = "1";
   };
 
@@ -210,8 +210,6 @@
      bazecor
      # Kanata
      kanata
-     #AwesomeWM
-     picom
      # Applications
      stow
      # Hyprland
@@ -220,7 +218,6 @@
      dunst
      libnotify
      swww
-     kitty
      rofi-wayland
      grim
      slurp
@@ -229,21 +226,20 @@
       })
      )
      obsidian
+     appimage-run
      brave
      keepassxc
      ungoogled-chromium
      tmux
      neovim
-     discord
-     discordo
      jetbrains.webstorm
      jetbrains.rider
      wezterm
-     kitty
      alacritty
      lazygit
      lazydocker
      docker
+     qbittorrent-qt5
      # Combine multiple .NET SDKs using combinePackages function.
      (with dotnetCorePackages; combinePackages [ sdk_8_0_4xx sdk_9_0 ])
      erlang
@@ -252,7 +248,7 @@
      pnpm
      python3
      webcord
-  
+     openssl 
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
