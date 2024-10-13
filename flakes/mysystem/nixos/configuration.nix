@@ -103,6 +103,12 @@
   
   # Added from here
 
+  programs.steam.enable = true;
+
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
+
   # All the hyprland nonsense
 
   programs.hyprland = {
@@ -251,6 +257,9 @@
      openssl 
      lutris
      cockatrice
+     steam
+     popsicle
+     # utils to fix windows partition
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
