@@ -89,7 +89,7 @@
   users.users.rytter = {
     isNormalUser = true;
     description = "Jakob Rytter";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -102,6 +102,8 @@
   nixpkgs.config.allowUnfree = true;
   
   # Added from here
+
+  virtualisation.docker.enable = true;
 
   programs.steam.enable = true;
 
@@ -244,7 +246,7 @@
      alacritty
      lazygit
      lazydocker
-     docker
+     docker-compose
      qbittorrent-qt5
      # Combine multiple .NET SDKs using combinePackages function.
      (with dotnetCorePackages; combinePackages [ sdk_8_0_4xx sdk_9_0 ])
@@ -259,6 +261,8 @@
      cockatrice
      steam
      popsicle
+     lsof
+     inotify-tools
      # utils to fix windows partition
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
