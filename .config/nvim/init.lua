@@ -663,6 +663,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'prettierd',
+        'csharpier',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -717,6 +718,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         elixir = { 'lsp' },
         heex = { 'lsp' },
+        cs = { 'csharpier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
