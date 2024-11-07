@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from numpy.polynomial.polynomial import Polynomial
 
 # Step 1: Load the data
 file_path = 'lala.csv'  # Adjust this path if necessary
@@ -16,9 +17,6 @@ except Exception as e:
 
 # Step 2: Manually assign column names since there is no header in the file
 data.columns = ['grader', 'nucelous']
-
-# Print out column names to verify they are correct
-print("Column Names:", data.columns)
 
 # Step 3: Extract relevant columns ('grader' and 'nucelous')
 grader = pd.to_numeric(data['grader'], errors='coerce')  # Convert 'grader' to numeric
@@ -44,7 +42,15 @@ std_nucelous = np.std(nucelous_clean)
 domains = np.linspace(grader_clean.min(), grader_clean.max(), 100)
 bell_curve = (1/(std_nucelous * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((domains - mean_nucelous) / std_nucelous)**2)
 
-# Step 6: Plotting the bar chart with bell curve overlay
+# Step 6: Fit a polynomial regression for a smooth trendline
+degree = 3  # Degree of the polynomial (adjust if needed)
+p = Polynomial.fit(grader_clean, nucelous_clean, degree)
+
+# Generate smooth x values (domains) and corresponding y values using the polynomial fit
+trendline_x = np.linspace(grader_clean.min(), grader_clean.max(), 100)
+trendline_y = p(trendline_x)
+
+# Step 7: Plotting the bar chart with bell curve overlay and trendline
 plt.figure(figsize=(10, 6))
 
 # Create the bar chart
@@ -54,8 +60,11 @@ plt.bar(bins[:-1], bin_means, width=np.diff(bins), align='edge', color='b', edge
 normalized_bell_curve = bell_curve / np.max(bell_curve) * np.max(bin_means)  # Scale to max bin mean
 plt.plot(domains, normalized_bell_curve, color='red', label='Bell Curve', linewidth=2)
 
+# Plot the smooth polynomial trendline over the entire range of x values (grader)
+plt.plot(trendline_x, trendline_y, color='green', label='Trendline (Polynomial Fit)', linewidth=2)
+
 # Customize the plot
-plt.title('Nucelous Values vs Grader with Bell Curve Overlay')
+plt.title('Nucelous Values vs Grader with Bell Curve and Polynomial Trendline')
 plt.xlabel('Degrees (Grader)')
 plt.ylabel('Mean Nucelous Value')
 
