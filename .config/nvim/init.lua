@@ -682,7 +682,8 @@ require('lazy').setup({
     end,
   },
 
-  { -- Autoformat
+  {
+    -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
@@ -690,7 +691,7 @@ require('lazy').setup({
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
+          require('conform').format { async = true, lsp_format = 'fallback' } -- Explicitly use fallback to LSP if needed
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -699,15 +700,14 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        -- Disable "format_on_save lsp_fallback" for most filetypes.
+        -- Only enable LSP formatting for specific languages like Elixir.
+        local disable_filetypes = { c = true, cpp = true, javascript = true, typescript = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
-          lsp_format_opt = 'never'
+          lsp_format_opt = 'never' -- Disable LSP formatting by default
         else
-          lsp_format_opt = 'fallback'
+          lsp_format_opt = 'fallback' -- Allow fallback to LSP for specific languages (e.g., Elixir)
         end
         return {
           timeout_ms = 2000,
@@ -716,14 +716,11 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        elixir = { 'lsp' },
-        heex = { 'lsp' },
+        elixir = { 'lsp' }, -- Use LSP formatting explicitly for Elixir
+        heex = { 'lsp' }, -- Use LSP formatting explicitly for HEEx templates
         cs = { 'csharpier' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettierd' }, -- Use Prettier for JavaScript
+        typescript = { 'prettierd' }, -- Use Prettier for TypeScript
       },
     },
   },
