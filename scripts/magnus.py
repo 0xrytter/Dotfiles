@@ -58,21 +58,20 @@ plt.bar(bins[:-1], bin_means, width=np.diff(bins), align='edge', color='b', edge
 
 # Bell curve overlay - Normalize bell_curve for better visualization on the same axes
 normalized_bell_curve = bell_curve / np.max(bell_curve) * np.max(bin_means)  # Scale to max bin mean
-plt.plot(domains, normalized_bell_curve, color='red', label='Bell Curve', linewidth=2)
+plt.plot(domains, normalized_bell_curve, color='red', linewidth=2)
 
-# Plot the smooth polynomial trendline over the entire range of x values (grader)
-plt.plot(trendline_x, trendline_y, color='green', label='Trendline (Polynomial Fit)', linewidth=2)
+# Plot the smooth polynomial trendline over the entire range of x values (grader), now in red
+plt.plot(trendline_x, trendline_y, color='red', linewidth=2)
 
 # Customize the plot
-plt.title('Nucelous Values vs Grader with Bell Curve and Polynomial Trendline')
-plt.xlabel('Degrees (Grader)')
+plt.title('Nucelous Values vs Degrees with Polynomial Trendline')
+plt.xlabel('Degrees')  # Simplified axis label to just "Degrees"
 plt.ylabel('Mean Nucelous Value')
 
 # Adjust y-axis to start at minimum nucelous value instead of zero to remove whitespace below bars
 plt.ylim(min(bin_means), np.max(bin_means) * 1.1)
 
 plt.grid(True)
-plt.legend()
 
-# Show the plot
+# Show the plot without legend or notes in top-right corner
 plt.show()
