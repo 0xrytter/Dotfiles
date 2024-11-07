@@ -3,18 +3,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Step 1: Load the data
-file_path = 'dataXL-1.csv'  # Adjust this path if necessary
+file_path = 'lala.csv'  # Adjust this path if necessary
 
-# Load data, set correct encoding and skip any irrelevant rows
+# Load data without assuming there is a header
 try:
-    data = pd.read_csv(file_path, encoding='ISO-8859-1', delimiter=';', skiprows=1)
+    # Use header=None to indicate that there is no header row in the CSV file
+    data = pd.read_csv(file_path, encoding='ISO-8859-1', delimiter=';', header=None)
     print("Data Loaded Successfully")
 except Exception as e:
     print(f"Error loading data: {e}")
     exit(1)
 
-# Step 2: Clean up column names (strip spaces)
-data.columns = data.columns.str.strip()
+# Step 2: Manually assign column names since there is no header in the file
+data.columns = ['grader', 'nucelous']
+
+# Print out column names to verify they are correct
+print("Column Names:", data.columns)
 
 # Step 3: Extract relevant columns ('grader' and 'nucelous')
 grader = pd.to_numeric(data['grader'], errors='coerce')  # Convert 'grader' to numeric
