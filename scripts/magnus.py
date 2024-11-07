@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Step 1: Load the data
-file_path = 'lala.csv'  # Adjust this path if necessary
+file_path = 'dataXL-1.csv'  # Adjust this path if necessary
 
 # Load data, set correct encoding and skip any irrelevant rows
 try:
