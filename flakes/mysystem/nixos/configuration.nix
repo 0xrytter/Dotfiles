@@ -10,6 +10,9 @@
       ./hardware-configuration.nix
     ];
 
+  # Virtualizing android
+  virtualisation.waydroid.enable = true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -47,12 +50,12 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   
   # Added wayland support
   services.xserver.displayManager.gdm.wayland = false;
-  services.xserver.displayManager.sessionPackages = with pkgs; [ hyprland ];
+  services.displayManager.sessionPackages = with pkgs; [ hyprland ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -107,7 +110,7 @@
 
   programs.steam.enable = true;
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
 
@@ -149,9 +152,7 @@
   ];
   
    # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-  };
+  hardware.graphics.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
@@ -189,6 +190,7 @@
   };
 
   xdg.portal.enable = true;
+
   
   # Added to here
 
@@ -272,6 +274,12 @@
      vlc
      libreoffice-qt6-fresh
      discord
+     postgresql
+     # fuse is req for strongbox which is a wow addon manager
+     fuse
+     appimage-run
+     vivaldi
+     librewolf
      # utils to fix windows partition
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget

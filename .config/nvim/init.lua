@@ -20,6 +20,12 @@
 =====================================================================
 =====================================================================
 
+TODO: Rytters to do of things that would be nice if added to the config
+[] Supermaven for ai auto completion
+[] Propper formatting of all file types including all the obscure formats like md, json, yaml, toml etc.
+[] Fixing the stupid typescript server so it always handles imports correctly
+[] LSP refactoring when moving files and folders with oil.nvim
+
 What is Kickstart?
 
   Kickstart.nvim is *not* a distribution.
