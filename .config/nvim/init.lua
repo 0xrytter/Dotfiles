@@ -21,10 +21,15 @@
 =====================================================================
 
 TODO: Rytters to do of things that would be nice if added to the config
+[] nvim surround for surrounding text
+[] leap.nvim for proper navigation
 [] Supermaven for ai auto completion
 [] Propper formatting of all file types including all the obscure formats like md, json, yaml, toml etc.
 [] Fixing the stupid typescript server so it always handles imports correctly
 [] LSP refactoring when moving files and folders with oil.nvim
+[] Try to get the stupid omnisharp server up to date. So we can actually do .NET work in here
+[] Make a quick macro for one button ggVGY
+[] Make a way to close buffers from telescope buffer window and preferebly also just to close current active buffer
 
 What is Kickstart?
 

@@ -6,4 +6,4 @@
 	helper = !/run/current-system/sw/bin/gh auth git-credential
 [user]
 	name = rytter
-	email = rytter@rerail.dk
+	email = rytter.jakob@gmail.com

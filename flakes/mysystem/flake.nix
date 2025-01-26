@@ -2,10 +2,10 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Change this to the stable version you want
   };
 
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs }: 
   let
     system = "x86_64-linux";
 
@@ -14,20 +14,18 @@
 
       config = {
         allowUnfree = true;
-        };
       };
+    };
   in
   {
+    nixosConfigurations = {
+      myNixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
 
-  nixosConfigurations = {
-    myNixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit system; };
-
-      modules = [
-        ./nixos/configuration.nix
-      ];
+        modules = [
+          ./nixos/configuration.nix
+        ];
+      };
     };
-  };
-
   };
 }

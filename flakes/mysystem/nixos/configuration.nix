@@ -226,6 +226,8 @@
      stow
      # Hyprland
      networkmanagerapplet
+     wine
+    wine64
      waybar
      dunst
      libnotify
@@ -251,7 +253,7 @@
      lazygit
      lazydocker
      docker-compose
-     qbittorrent-qt5
+qbittorrent
      # Combine multiple .NET SDKs using combinePackages function.
      (with dotnetCorePackages; combinePackages [ sdk_8_0_4xx sdk_9_0 ])
      erlang
@@ -280,8 +282,7 @@
      appimage-run
      vivaldi
      librewolf
-     dbeaver-bin
-     gfn-electron
+gfn-electron
      # utils to fix windows partition
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
