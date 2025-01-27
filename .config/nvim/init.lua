@@ -30,6 +30,8 @@ TODO: Rytters to do of things that would be nice if added to the config
 [] Try to get the stupid omnisharp server up to date. So we can actually do .NET work in here
 [] Make a quick macro for one button ggVGY
 [] Make a way to close buffers from telescope buffer window and preferebly also just to close current active buffer
+[] Hotkey for neogit and dadbod. We also needs some utils for dadbod to actually get it to work with connection string. And stupid sql server databases.
+[] Command line util which we can run from nvim to kill processes on ports. Insted of the sudo lsof kill -9 nonsense. Just a vim command with a port and then it figures it out. Or from the shell. Either is good
 
 What is Kickstart?
 
