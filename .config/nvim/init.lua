@@ -32,6 +32,8 @@ TODO: Rytters to do of things that would be nice if added to the config
 [] Make a way to close buffers from telescope buffer window and preferebly also just to close current active buffer
 [] Hotkey for neogit and dadbod. We also needs some utils for dadbod to actually get it to work with connection string. And stupid sql server databases.
 [] Command line util which we can run from nvim to kill processes on ports. Insted of the sudo lsof kill -9 nonsense. Just a vim command with a port and then it figures it out. Or from the shell. Either is good
+[] Hotkey to comment in/comment out blocks accross frameworks and languages
+[] Ability to paste in telescope searches. Improved telescope hotkeys in general
 
 What is Kickstart?
 
@@ -632,7 +634,22 @@ require('lazy').setup({
         dockerls = {},
         docker_compose_language_service = {},
         tailwindcss = {},
-        omnisharp = {},
+        omnisharp = {
+          handlers = {
+            ['textDocument/definition'] = require('omnisharp_extended').handler,
+          },
+          enable_roslyn_analyzers = true,
+          organize_imports_on_format = true,
+          enable_import_completion = true,
+          sdk_include_prereleases = true,
+          settings = {
+            enableRoslynAnalyzers = true,
+            enableEditorConfigSupport = true,
+            enableImportCompletion = true,
+            enableMsBuildLoadProjectsOnDemand = true,
+            analyzeOpenDocumentsOnly = false,
+          },
+        },
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -1093,6 +1110,11 @@ require('lazy').setup({
       'nvim-telescope/telescope.nvim', -- optional
     },
     config = true,
+  },
+
+  {
+    'Hoffs/omnisharp-extended-lsp.nvim',
+    lazy = true,
   },
 
   -- the following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
