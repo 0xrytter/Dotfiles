@@ -21,15 +21,12 @@
 =====================================================================
 
 TODO: Rytters to do of things that would be nice if added to the config
-[] nvim surround for surrounding text
-[] leap.nvim for proper navigation
 [] Supermaven for ai auto completion
 [] Propper formatting of all file types including all the obscure formats like md, json, yaml, toml etc.
 [] Fixing the stupid typescript server so it always handles imports correctly
 [] LSP refactoring when moving files and folders with oil.nvim
 [] Try to get the stupid omnisharp server up to date. So we can actually do .NET work in here
 [] Make a quick macro for one button ggVGY
-[] Make a way to close buffers from telescope buffer window and preferebly also just to close current active buffer
 [] Hotkey for neogit and dadbod. We also needs some utils for dadbod to actually get it to work with connection string. And stupid sql server databases.
 [] Command line util which we can run from nvim to kill processes on ports. Insted of the sudo lsof kill -9 nonsense. Just a vim command with a port and then it figures it out. Or from the shell. Either is good
 [] Hotkey to comment in/comment out blocks accross frameworks and languages
@@ -94,7 +91,7 @@ Kickstart Guide:
 If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
 
 I hope you enjoy your Neovim journey,
-- TJ
+- Tn
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
@@ -103,6 +100,9 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- See `:help mapleader` NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- HACK: buffer killing keybind added
+vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = 'Close current buffer' })
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
@@ -1115,6 +1115,38 @@ require('lazy').setup({
   {
     'Hoffs/omnisharp-extended-lsp.nvim',
     lazy = true,
+  },
+
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    opts = {
+      jump = {
+        autojump = true,
+      },
+      modes = {
+        char = {
+          jump_labels = true,
+          multi_line = false,
+        },
+      },
+    },
+    -- stylua: ignore
+    keys = {
+      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S",     mode = { "n" },           function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+    },
+  },
+
+  -- NOTE: Supermaven is a bit weird in enabling pro you use SupermavenLogout, then SuperMavenUsePro and it should use pro. Use SupermavenShowLog and look for it saying user Pro. If so it should be pro
+  {
+    'supermaven-inc/supermaven-nvim',
+    config = function()
+      require('supermaven-nvim').setup {}
+    end,
   },
 
   -- the following two comments only work if you have downloaded the kickstart repo, not just copy pasted the

@@ -190,7 +190,6 @@ security.rtkit.enable = true;
 
   xdg.portal.enable = true;
 
-  
   # Added to here
 
   # List packages installed in system profile. To search, run:
