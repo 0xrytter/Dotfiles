@@ -2,7 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Change this to update packages
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Bump this to update packages, among other things.
   };
 
   outputs = { self, nixpkgs }: 
