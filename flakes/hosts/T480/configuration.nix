@@ -24,6 +24,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Attempted fix to my wifi not be spotty
+  networking.networkmanager.wifi.powersave = false;
+
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
@@ -256,6 +259,7 @@ gcc.cc.lib
 libuv
 libva
 gearlever
+mullvad-vpn
 (import ./shadow.nix { inherit lib pkgs; })
      # utils to fix windows partition
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

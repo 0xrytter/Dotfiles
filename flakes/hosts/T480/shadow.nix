@@ -4,12 +4,11 @@ let
   pname = "shadow";
   version = "appimage-local";
 
-  # Reference the AppImage that sits in the same folder as configuration.nix
-  # We turn the relative file into a file:// URL using toString + builtins.toPath.
+  # Absolute path to your AppImage in Downloads
   src = pkgs.fetchurl {
-    url = "file://" + toString (builtins.toPath ./ShadowPC.AppImage);
-    # Dummy hash first; the first build will tell you the real sha256.
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    url = "https://update.shadow.tech/launcher/prod/linux/ubuntu_18.04/ShadowPC.AppImage";
+    # Put a dummy hash first; first build will print the correct sha256 to use
+    hash = "sha256-pK3dSFDFQij/uJ6rwic8x32imF1EzPGjovkXrIUnszY=";
   };
 
   contents = pkgs.appimageTools.extract { inherit pname version src; };
@@ -17,7 +16,8 @@ in
 pkgs.appimageTools.wrapType2 {
   inherit pname version src;
 
-  # T480 (Intel UHD 620) + libs Shadow asks for
+  # Libraries Shadow expects (based on your missing .so list and Ubuntu hints)
+  # Tuned for ThinkPad T480 (Intel UHD 620).
   extraPkgs = p: with p; [
     libva
     libdrm
@@ -43,7 +43,27 @@ pkgs.appimageTools.wrapType2 {
     alsa-lib
 
     intel-media-driver  # iHD for Gen8+
-    vaapiIntel          # legacy fallback
+    vaapiIntel          # legacy i965 fallback
   ];
 
-  extraInstallCommands
+  # Desktop entry + icons if present inside the AppImage
+  extraInstallCommands = ''
+    desk="$(find ${contents} -maxdepth 2 -name '*.desktop' | head -n1 || true)"
+    if [ -n "$desk" ]; then
+      install -Dm444 "$desk" "$out/share/applications/${pname}.desktop"
+      substituteInPlace "$out/share/applications/${pname}.desktop" \
+        --replace "Exec=AppRun" "Exec=${pname}"
+      sed -i "s/^Name=.*/Name=Shadow/" "$out/share/applications/${pname}.desktop" || true
+    fi
+    if [ -d ${contents}/usr/share/icons ]; then
+      cp -r ${contents}/usr/share/icons "$out/share/"
+    fi
+  '';
+
+  meta = with lib; {
+    description = "Shadow PC client (AppImage wrapped for NixOS)";
+    homepage = "https://shadow.tech";
+    license = licenses.unfreeRedistributable or licenses.unfree;
+    platforms = [ "x86_64-linux" ];
+  };
+}
