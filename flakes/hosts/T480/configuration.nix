@@ -4,15 +4,36 @@
 
 { config, pkgs, lib, ... }:
 
+
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
+nixpkgs.overlays = [
+  (final: prev: {
+    claude-code = (import (fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
+      sha256 = "0f6zni3jn6ji5icwbidbpmcgxdal2qnjszp7ragdcy0857hvq3c5";
+    }) { 
+      system = prev.stdenv.hostPlatform.system;
+      config = config.nixpkgs.config; 
+    }).claude-code;
+  })
+];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -47,6 +68,32 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+
+  
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = false;
+      scrollMethod = "none";
+      middleEmulation = false;
+      disableWhileTyping = true;
+      naturalScrolling = false;
+    };
+  };
+  
+  services.xserver.displayManager.sessionCommands = ''
+    xinput set-button-map 9 1 0 3 4 5 6 7  # Nukes middle, keeps left/right
+    xinput set-button-map 10 1 0 3 4 5 6 7
+    xinput set-prop 10 "libinput Accel Speed" -0.8  # Less twitchy
+    xinput set-prop 10 "Coordinate Transformation Matrix" 0 0 0 0 0 0 0 0 1  # Optional: nub moves less
+  '';
+
+  hardware.trackpoint = {
+    enable = true;
+    emulateWheel = false;  # No accidental scrolls
+    sensitivity = 200;     # Tune 100-255
+  };
 
   # Add mullvad vpn
   services.mullvad-vpn = {
@@ -149,6 +196,7 @@ programs.appimage.binfmt = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+claude-code
 gwe
      git
      gh
@@ -266,7 +314,6 @@ libuv
 libva
 gearlever
 mullvad-vpn
-(import ./shadow.nix { inherit lib pkgs; })
      # utils to fix windows partition
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
