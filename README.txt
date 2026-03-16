@@ -34,3 +34,29 @@ for neovim first clone most recent version of nvchad
 git clone -b v2.0 https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 Then symlink our custom config in with stow .
+
+## Claude Code
+
+### Installation (NixOS)
+Add this overlay to configuration.nix (after the imports block) to pull claude-code from unstable:
+
+nixpkgs.overlays = [
+  (final: prev: {
+    claude-code = (import (fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
+      sha256 = "YOUR_HASH_HERE";
+    }) {
+      system = prev.stdenv.hostPlatform.system;
+      config = config.nixpkgs.config;
+    }).claude-code;
+  })
+];
+
+Then add claude-code to environment.systemPackages as normal.
+
+To update the hash run:
+nix-prefetch-url --unpack https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz
+
+### Auth
+Run claude on first launch and authenticate via browser through your Anthropic account.
+No API key or env variables needed.
