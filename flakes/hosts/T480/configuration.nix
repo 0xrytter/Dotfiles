@@ -15,7 +15,7 @@ nixpkgs.overlays = [
   (final: prev: {
     claude-code = (import (fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-      sha256 = "0f6zni3jn6ji5icwbidbpmcgxdal2qnjszp7ragdcy0857hvq3c5";
+      sha256 = "01j24h5r9cypqsq9nkznakckp3r9z9fpp8vngks1pxya7p9wg5c6";
     }) { 
       system = prev.stdenv.hostPlatform.system;
       config = config.nixpkgs.config; 
@@ -128,6 +128,7 @@ nixpkgs.overlays = [
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
