@@ -195,7 +195,6 @@ programs.appimage.binfmt = true;
   environment.systemPackages = with pkgs; [
 claude-code
 gwe
-dust
      git
      gh
      # Dependencies for neovim and others
