@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, pkgs-unstable, ... }:
 
 
 {
@@ -13,13 +13,7 @@
 
 nixpkgs.overlays = [
   (final: prev: {
-    claude-code = (import (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-      sha256 = "01j24h5r9cypqsq9nkznakckp3r9z9fpp8vngks1pxya7p9wg5c6";
-    }) { 
-      system = prev.stdenv.hostPlatform.system;
-      config = config.nixpkgs.config; 
-    }).claude-code;
+    claude-code = pkgs-unstable.claude-code;
   })
 ];
 
@@ -104,6 +98,8 @@ nixpkgs.overlays = [
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -199,6 +195,7 @@ programs.appimage.binfmt = true;
   environment.systemPackages = with pkgs; [
 claude-code
 gwe
+dust
      git
      gh
      # Dependencies for neovim and others
@@ -244,6 +241,8 @@ gwe
      appimage-run
      brave
      keepassxc
+     bitwarden
+     bitwarden-cli
      ungoogled-chromium
      tmux
      neovim

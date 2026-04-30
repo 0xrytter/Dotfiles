@@ -2,12 +2,17 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Bump this to update packages, among other things.
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs }: 
+  outputs = { self, nixpkgs, nixpkgs-unstable }:
   let
     system = "x86_64-linux";
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
   in
   {
     nixosConfigurations = {
@@ -20,6 +25,7 @@
       };
       T480 = nixpkgs.lib.nixosSystem {
         system = system;
+        specialArgs = { inherit pkgs-unstable; };
         modules = [
           ./hosts/T480/configuration.nix
           ./hosts/T480/hardware-configuration.nix
@@ -28,4 +34,3 @@
     };
   };
 }
-
