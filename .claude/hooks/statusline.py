@@ -120,7 +120,6 @@ for f in SESSIONS.glob("*.json"):
 # ── Line 1 ────────────────────────────────────────────────────────────────────
 ctx_pct_i = int(ctx_pct)
 ctx_color = _RED if ctx_pct_i >= CTX_RED else (_YELLOW if ctx_pct_i >= CTX_AMBER else _GREEN)
-dot       = col(_RED, "⬤") if ctx_pct_i >= CTX_RED else (col(_YELLOW, "⬤") if ctx_pct_i >= CTX_AMBER else col(_GREEN, "⬤"))
 
 def hi(text):
     return col(_GREEN, str(text))
@@ -132,8 +131,8 @@ month_label = today.strftime('%b').lower()
 sep = col(_SEP, " | ")
 
 line1 = (
-    f"{dot}  {hi(model_short)}{effort_str}"
-    f"{sep}{col(_DIM, 'ctx')} {col(ctx_color, f'{ctx_pct_i}%')}"
+    f"{hi(model_short)}{effort_str}"
+    f"{sep}{col(_DIM, 'ctx')} {col(ctx_color, f'{ctx_pct_i}%') if ctx_pct_i >= CTX_AMBER else col(_DIM, f'{ctx_pct_i}%')}"
     f"{sep}{hi(f'${cost:.2f}')}"
     f"{sep}{hi(human)} {col(_DIM, 'msg')} {hi(tools)} {col(_DIM, 'ops')}"
     f"{sep}{col(_DIM, 'today')} {hi(f'${today_cost:.2f}')}"
