@@ -109,7 +109,7 @@ today_cost = month_cost = trailing_cost = 0.0
 for f in SESSIONS.glob("*.json"):
     try:
         s = json.loads(f.read_text())
-        d = datetime.strptime(s["started_at"], "%Y-%m-%d %H:%M:%S").date()
+        d = datetime.strptime(s.get("updated_at", s["started_at"]), "%Y-%m-%d %H:%M:%S").date()
         v = float(s.get("cost_usd", 0))
         if d == today:          today_cost    += v
         if d >= month_start:    month_cost    += v
@@ -132,7 +132,7 @@ sep = col(_SEP, " | ")
 
 line1 = (
     f"{hi(model_short)}{effort_str}"
-    f"{sep}{col(_DIM, 'ctx')} {col(ctx_color, f'{ctx_pct_i}%') if ctx_pct_i >= CTX_AMBER else col(_DIM, f'{ctx_pct_i}%')}"
+    f"{sep}{col(_DIM, 'ctx')} {col(ctx_color, f'{ctx_pct_i}%')}"
     f"{sep}{hi(f'${cost:.2f}')}"
     f"{sep}{hi(human)} {col(_DIM, 'msg')} {hi(tools)} {col(_DIM, 'ops')}"
     f"{sep}{col(_DIM, 'today')} {hi(f'${today_cost:.2f}')}"
