@@ -1,5 +1,6 @@
 """Shared cost calculation — pricing.json + transcript token counts."""
 import json
+from datetime import timezone, datetime
 from pathlib import Path
 
 PRICING_FILE = Path.home() / ".claude" / "pricing.json"
@@ -21,7 +22,7 @@ def get_prices(model_id):
 
 
 def _iter_turns(transcript_path):
-    """Yield unique (inp, c5m, c1h, cr, out) tuples from assistant messages."""
+    """Yield unique (date_str, inp, c5m, c1h, cr, out) tuples from assistant messages."""
     p = Path(transcript_path)
     if not p.exists():
         return
@@ -45,20 +46,24 @@ def _iter_turns(transcript_path):
             if key in seen:
                 continue
             seen.add(key)
-            yield key
+            ts = obj.get("timestamp", "")
+            try:
+                date_str = datetime.fromisoformat(ts.replace("Z", "+00:00")).astimezone().strftime("%Y-%m-%d")
+            except Exception:
+                date_str = ""
+            yield (date_str,) + key
         except Exception:
             continue
 
 
 def calc_cost(transcript_path, model_id):
-    """Calculate session cost from transcript token counts + pricing.json.
-    Returns None if transcript is unreadable or model has no pricing entry."""
+    """Calculate total session cost. Returns None if unreadable or no pricing."""
     prices = get_prices(model_id)
     if not prices or not transcript_path:
         return None
 
     total_in = total_5m = total_1h = total_cr = total_out = 0
-    for inp, c5m, c1h, cr, out in _iter_turns(transcript_path):
+    for _, inp, c5m, c1h, cr, out in _iter_turns(transcript_path):
         total_in  += inp
         total_5m  += c5m
         total_1h  += c1h
@@ -75,4 +80,21 @@ def calc_cost(transcript_path, model_id):
     )
 
 
+def calc_cost_by_date(transcript_path, model_id):
+    """Calculate cost broken down by local date. Returns {} if unreadable or no pricing."""
+    prices = get_prices(model_id)
+    if not prices or not transcript_path:
+        return {}
 
+    by_date = {}
+    m = 1_000_000
+    for date_str, inp, c5m, c1h, cr, out in _iter_turns(transcript_path):
+        cost = (
+            inp  * prices["input"]          / m +
+            c5m  * prices["cache_write_5m"] / m +
+            c1h  * prices["cache_write_1h"] / m +
+            cr   * prices["cache_read"]     / m +
+            out  * prices["output"]         / m
+        )
+        by_date[date_str] = by_date.get(date_str, 0) + cost
+    return by_date

@@ -7,7 +7,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from cost_calc import calc_cost
+from cost_calc import calc_cost, calc_cost_by_date
 
 SESSIONS = Path.home() / ".claude" / "sessions"
 SESSIONS.mkdir(exist_ok=True)
@@ -90,12 +90,14 @@ if path and cost > 0:
             started_at = json.loads(session_file.read_text()).get("started_at", now)
         except Exception:
             pass
+    costs_by_date = calc_cost_by_date(path, model)
     session_file.write_text(json.dumps({
         "transcript_path": path,
         "model": model,
         "started_at": started_at,
         "updated_at": now,
         "cost_usd": cost,
+        "costs_by_date": costs_by_date,
         "human_turns": human,
         "tool_ops": tools,
         "is_final": False,
@@ -109,11 +111,23 @@ today_cost = month_cost = trailing_cost = 0.0
 for f in SESSIONS.glob("*.json"):
     try:
         s = json.loads(f.read_text())
-        d = datetime.strptime(s.get("updated_at", s["started_at"]), "%Y-%m-%d %H:%M:%S").date()
-        v = float(s.get("cost_usd", 0))
-        if d == today:          today_cost    += v
-        if d >= month_start:    month_cost    += v
-        if d >= trailing_start: trailing_cost += v
+        costs_by_date = s.get("costs_by_date")
+        if costs_by_date:
+            for date_str, v in costs_by_date.items():
+                try:
+                    d = datetime.strptime(date_str, "%Y-%m-%d").date()
+                    if d == today:          today_cost    += v
+                    if d >= month_start:    month_cost    += v
+                    if d >= trailing_start: trailing_cost += v
+                except Exception:
+                    pass
+        else:
+            # fallback for old session files without costs_by_date
+            d = datetime.strptime(s.get("updated_at", s["started_at"]), "%Y-%m-%d %H:%M:%S").date()
+            v = float(s.get("cost_usd", 0))
+            if d == today:          today_cost    += v
+            if d >= month_start:    month_cost    += v
+            if d >= trailing_start: trailing_cost += v
     except Exception:
         pass
 
