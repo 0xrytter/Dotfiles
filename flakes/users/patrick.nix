@@ -14,7 +14,7 @@
     LC_TIME = "da_DK.UTF-8";
   };
 
-  users.users.patrick = {
+  users.users.pallep = {
     isNormalUser = true;
     description = "Patrick";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
