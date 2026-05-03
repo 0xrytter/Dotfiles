@@ -11,7 +11,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/rytter/.claude/hooks/session-stop.py"
+            "command": "python3 $HOME/.claude/hooks/session-stop.py"
           }
         ]
       }
@@ -19,7 +19,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "python3 /home/rytter/.claude/hooks/statusline.py"
+    "command": "python3 $HOME/.claude/hooks/statusline.py"
   },
   "model": "sonnet"
 }
