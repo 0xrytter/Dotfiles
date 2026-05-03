@@ -22,7 +22,7 @@
     dunst
     libnotify
     swww
-    rofi-wayland
+    rofi
     grim
     slurp
   ];
