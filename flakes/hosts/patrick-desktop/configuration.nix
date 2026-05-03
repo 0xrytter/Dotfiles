@@ -5,10 +5,16 @@
     ../../modules/desktop.nix
     ../../modules/hyprland.nix
     ../../modules/nvidia.nix
-    ../../users/rytter.nix
+    ../../users/patrick.nix
   ];
 
-  networking.hostName = "DIY-Desktop";
+  networking.hostName = "patrick-desktop";
+
+  services.xserver.xkb = {
+    layout = "dk";
+    variant = "";
+  };
+  console.keyMap = "dk-latin1";
 
   virtualisation.waydroid.enable = true;
   programs.steam.enable = true;

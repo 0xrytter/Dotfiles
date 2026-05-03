@@ -4,7 +4,7 @@ set -euo pipefail
 # Cache sudo credentials upfront — one prompt for the whole script
 sudo -v
 
-read -p "Enter hostname (DIY-Desktop/T480) or Enter for $(hostname -s): " input
+read -p "Enter hostname (DIY-Desktop/T480/patrick-desktop) or Enter for $(hostname -s): " input
 HOSTNAME="${input:-$(hostname -s)}"
 FLAKE_PATH="."
 
