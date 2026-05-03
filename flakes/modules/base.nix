@@ -53,7 +53,7 @@
     vlc libreoffice-qt6-fresh
     discord postgresql
     fuse appimage-run
-    vivaldi librewolf gfn-electron
+    vivaldi librewolf
     pavucontrol
     obsidian brave keepassxc ungoogled-chromium
     wine wine64

@@ -46,7 +46,7 @@
 
   environment.systemPackages = with pkgs; [
     claude-code
-    bitwarden
+    bitwarden-desktop
     pkgs-unstable.bitwarden-cli
     teams-for-linux
     google-chrome
