@@ -12,6 +12,29 @@ from cost_calc import calc_cost, calc_cost_by_date
 SESSIONS = Path.home() / ".claude" / "sessions"
 SESSIONS.mkdir(exist_ok=True)
 
+_TIER_MULTIPLIERS = {
+    "default_claude_ai": 1,
+    "max_claude_ai":     5,
+    "max_5x":            5,
+    "max_20x":          20,
+}
+
+def _plan_multiplier():
+    import re
+    try:
+        creds = json.loads((Path.home() / ".claude" / ".credentials.json").read_text())
+        tier  = creds.get("claudeAiOauth", {}).get("rateLimitTier", "")
+        if tier in _TIER_MULTIPLIERS:
+            return _TIER_MULTIPLIERS[tier]
+        m = re.search(r"(\d+)x", tier)
+        if m:
+            return int(m.group(1))
+    except Exception:
+        pass
+    return 1
+
+PLAN_MULTIPLIER = _plan_multiplier()
+
 CTX_AMBER = 40
 CTX_RED   = 60
 
@@ -162,18 +185,29 @@ def rate_col(pct):
     return _RED if pct >= 80 else (_YELLOW if pct >= 50 else _GREEN)
 
 rate_parts = []
+PRO_REF_MULTIPLIER = 5  # reference Max tier used when comparing from Pro
+
+def other_plan_pct(p):
+    """Convert p% on current plan to equivalent % on the other plan."""
+    if PLAN_MULTIPLIER == 1:
+        return round(p / PRO_REF_MULTIPLIER, 1)   # Pro → Max 5x: smaller number
+    else:
+        return round(p * PLAN_MULTIPLIER, 1)        # Max → Pro: bigger number
+
 if fh:
     p5, r5 = fh.get("used_percentage", 0), fh.get("resets_at")
     t5 = time_until(r5) if r5 else None
+    other5 = other_plan_pct(p5)
     rate_parts.append(
-        f"{col(_DIM, '5h')} {col(rate_col(p5), f'{p5:.0f}%')}{col(_SEP, '/')}{col(rate_col(p5*5), f'{round(p5*5):.0f}%')}"
+        f"{col(_DIM, '5h')} {col(rate_col(p5), f'{p5:.0f}%')}{col(_SEP, '/')}{col(rate_col(other5), f'{other5:.1f}%')}"
         + (f" {col(_DIM, 'in')} {hi(t5)}" if t5 and t5 != "now" else "")
     )
 if sd:
     p7, r7 = sd.get("used_percentage", 0), sd.get("resets_at")
     t7 = time_until(r7) if r7 else None
+    other7 = other_plan_pct(p7)
     rate_parts.append(
-        f"{col(_DIM, '7d')} {col(rate_col(p7), f'{p7:.0f}%')}{col(_SEP, '/')}{col(rate_col(p7*5), f'{round(p7*5):.0f}%')}"
+        f"{col(_DIM, '7d')} {col(rate_col(p7), f'{p7:.0f}%')}{col(_SEP, '/')}{col(rate_col(other7), f'{other7:.1f}%')}"
         + (f" {col(_DIM, 'in')} {hi(t7)}" if t7 and t7 != "now" else "")
     )
 
