@@ -6,6 +6,7 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader.systemd-boot.enable = true;
@@ -23,9 +24,7 @@
 
   virtualisation.docker.enable = true;
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
+  fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
 
   environment.pathsToLink = [ "/libexec" ];
 

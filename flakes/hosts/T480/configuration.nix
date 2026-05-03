@@ -18,7 +18,7 @@
 
   networking.networkmanager.wifi.powersave = false;
 
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = true;
 
   services.libinput = {
     enable = true;
