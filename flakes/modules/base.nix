@@ -33,6 +33,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    codex
     claude-code
     bitwarden-desktop
     pkgs-unstable.bitwarden-cli
