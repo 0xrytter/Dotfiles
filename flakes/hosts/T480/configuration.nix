@@ -45,7 +45,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    claude-code
     bitwarden-desktop
     pkgs-unstable.bitwarden-cli
     teams-for-linux
