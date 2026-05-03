@@ -34,6 +34,8 @@
 
   environment.systemPackages = with pkgs; [
     claude-code
+    bitwarden-desktop
+    pkgs-unstable.bitwarden-cli
     git gh
     gcc13 gnumake clang unzip ripgrep coreutils wget
     vimPlugins.telescope-live-grep-args-nvim

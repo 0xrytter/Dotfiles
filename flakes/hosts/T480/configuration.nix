@@ -45,8 +45,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    bitwarden-desktop
-    pkgs-unstable.bitwarden-cli
     teams-for-linux
     google-chrome
     gearlever
