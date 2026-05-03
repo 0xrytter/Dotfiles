@@ -12,7 +12,8 @@ echo "Rebuilding system..."
 sudo nixos-rebuild switch --flake "$FLAKE_PATH#$HOSTNAME"
 
 echo "Cleaning old generations (keeping last 3)..."
-sudo nix-collect-garbage --keep-minimum 3 --delete-older-than 30d
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +3
+sudo nix-collect-garbage
 
 echo "Rebuild complete. Kernel: $(uname -r)"
 
