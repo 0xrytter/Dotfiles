@@ -35,16 +35,17 @@ def _plan_multiplier():
 
 PLAN_MULTIPLIER = _plan_multiplier()
 
-CTX_AMBER = 40
-CTX_RED   = 60
+CTX_AMBER = 50
+CTX_RED   = 80
 
 # Catppuccin Mocha
-_RST    = "\033[0m"
-_SEP    = "#6E6C7E"  # overlay — pipes and dots
-_DIM    = "#988BA2"  # subtext — labels and nav
-_GREEN  = "#ABE9B3"  # status only
-_YELLOW = "#FAE3B0"  # status only
-_RED    = "#F28FAD"  # status only
+_RST       = "\033[0m"
+_SEP       = "#6E6C7E"  # overlay — pipes and dots
+_DIM       = "#988BA2"  # subtext — labels and nav
+_HIGHLIGHT = "#89b4fa"  # blue — highlighted values
+_GREEN     = "#a6e3a1"  # green — ok/low
+_YELLOW    = "#f9e2af"  # yellow — warning
+_RED       = "#f38ba8"  # red — critical
 
 def col(hex_color, text):
     r, g, b = int(hex_color[1:3], 16), int(hex_color[3:5], 16), int(hex_color[5:7], 16)
@@ -159,7 +160,7 @@ ctx_pct_i = int(ctx_pct)
 ctx_color = _RED if ctx_pct_i >= CTX_RED else (_YELLOW if ctx_pct_i >= CTX_AMBER else _GREEN)
 
 def hi(text):
-    return col(_GREEN, str(text))
+    return col(_HIGHLIGHT, str(text))
 
 model_short = model.replace("claude-", "").replace("-latest", "")
 effort_str  = f" {col(_DIM, 'effort:')} {hi(effort)}" if effort else ""
