@@ -60,10 +60,3 @@ nix-prefetch-url --unpack https://github.com/NixOS/nixpkgs/archive/nixpkgs-unsta
 ### Auth
 Run claude on first launch and authenticate via browser through your Anthropic account.
 No API key or env variables needed.
-
-### Config (hooks + status line)
-Claude creates ~/.claude/ itself, so stow can't handle it. Symlink manually after first launch:
-
-ln -sf ~/dotfiles/.claude/settings.json ~/.claude/settings.json
-ln -sf ~/dotfiles/.claude/pricing.json ~/.claude/pricing.json
-ln -sf ~/dotfiles/.claude/hooks ~/.claude/hooks
